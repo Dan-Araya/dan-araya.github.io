@@ -434,8 +434,10 @@ a:hover {
     transform: rotate(-90deg);
 }
 
-/* ── Mobile ── */
-@media (max-width: 767px) {
+/* ── Responsive ── */
+
+/* Tablet & Mobile — Structural override: vertical scroll instead of zigzag */
+@media (max-width: 1023px) {
     .scroll-track {
         display: none;
     }
@@ -463,13 +465,36 @@ a:hover {
         min-height: 100vh;
     }
 
+    .nav,
+    .direction-arrow {
+        display: none;
+    }
+}
+
+/* Tablet — Refined spacing and proportions */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .section-inner {
+        padding: 80px 48px;
+    }
+
+    .hero__name {
+        font-size: clamp(2.2rem, 5vw, 3.5rem);
+    }
+
+    .hero__tagline {
+        font-size: 1.15rem;
+        margin-bottom: 56px;
+    }
+}
+
+/* Mobile — Compact single-column layouts */
+@media (max-width: 767px) {
     .section-inner {
         padding: 64px 24px;
     }
 
-    .nav,
-    .direction-arrow {
-        display: none;
+    .hero__tagline {
+        margin-bottom: 48px;
     }
 
     .projects__grid {
