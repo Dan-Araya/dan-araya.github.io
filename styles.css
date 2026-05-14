@@ -211,27 +211,17 @@ a:hover {
 }
 
 .about__content {
-    display: flex;
-    gap: 64px;
-    align-items: flex-start;
-}
-
-.about__avatar {
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    background: var(--border);
-    flex-shrink: 0;
+    display: block;
 }
 
 .about__bio {
-    max-width: 560px;
+    max-width: 760px;
 }
 
 .about__bio p {
     color: var(--text-secondary);
-    font-size: 1.05rem;
-    margin-bottom: 16px;
+    font-size: 1rem;
+    margin-bottom: 14px;
 }
 
 .about__bio p:last-child {
@@ -539,18 +529,6 @@ a:hover {
 
     .project-card__thumbnail {
         min-height: 160px;
-    }
-
-    .about__content {
-        flex-direction: column;
-        gap: 32px;
-        align-items: center;
-        text-align: center;
-    }
-
-    .about__avatar {
-        width: 150px;
-        height: 150px;
     }
 
     .about__bio {
