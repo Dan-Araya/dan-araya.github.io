@@ -39,24 +39,26 @@
                 <div class="section-inner">
                     <h2 class="projects__heading animate-in">Proyecto principal</h2>
                     <div class="projects__grid">
-                        <article class="project-card animate-in">
+                        <article class="project-card project-card--featured animate-in">
                             <div class="project-card__thumbnail" style="background:#C8C4B8"></div>
-                            <h3 class="project-card__title">BTC Arbitrage Data Pipeline</h3>
-                            <p class="project-card__subtitle">AWS Serverless · Medallion Architecture · IaC con Terraform</p>
-                            <p class="project-card__description">Pipeline de Data Engineering end-to-end que analiza spreads históricos y en tiempo real entre BTC/CLP (Buda.com) y BTC/USDT (Binance). Arquitectura medallion Bronze/Silver/Gold en S3, ingesta heterogénea con paginación por cursor y offset temporal, reconstrucción de velas OHLCV, forward-fill de tipo de cambio, z-score rolling y alertas SNS. Infraestructura 100% serverless dentro del Free Tier de AWS.</p>
-                            <div class="project-card__tags">
-                                <span class="tag">Python</span>
-                                <span class="tag">AWS Lambda</span>
-                                <span class="tag">S3</span>
-                                <span class="tag">EventBridge</span>
-                                <span class="tag">Glue</span>
-                                <span class="tag">Athena</span>
-                                <span class="tag">CloudWatch</span>
-                                <span class="tag">SNS</span>
-                                <span class="tag">Terraform</span>
-                                <span class="tag">Parquet</span>
+                            <div class="project-card__body">
+                                <h3 class="project-card__title">Pipeline de datos para análisis histórico de arbitraje de BTC</h3>
+                                <p class="project-card__subtitle">AWS Serverless · Medallion Architecture · IaC con Terraform</p>
+                                <p class="project-card__description">Pipeline de Data Engineering end-to-end que reconstruye 9 años de spreads históricos de BTC entre Buda.com (BTC-CLP) y Binance (BTC-USDT), normalizado por USD/CLP del Banco Central de Chile. Arquitectura medallion Bronze → Silver en S3, ingesta heterogénea con paginación por cursor y por offset temporal, reconstrucción OHLCV minutal desde trades crudos, JOIN cross-timezone para normalización USDT -> CLP, y consulta analítica vía Glue Data Catalog + Athena con partition projection. Más de 10.4 millones de velas procesadas, una query SQL identifica episodios sostenidos de prima ≥ 1% en ~3 segundos.</p>
+                                <div class="project-card__tags">
+                                    <span class="tag">Python</span>
+                                    <span class="tag">AWS Lambda</span>
+                                    <span class="tag">Step Functions</span>
+                                    <span class="tag">S3</span>
+                                    <span class="tag">Glue</span>
+                                    <span class="tag">Athena</span>
+                                    <span class="tag">Terraform</span>
+                                    <span class="tag">pandas</span>
+                                    <span class="tag">pyarrow</span>
+                                    <span class="tag">Parquet</span>
+                                </div>
+                                <a href="https://github.com/tu-usuario/btc-arbitrage-pipeline" class="project-card__link" target="_blank" rel="noopener noreferrer">Ver repositorio en GitHub →</a>
                             </div>
-                            <a href="https://github.com/tu-usuario/btc-arbitrage-pipeline" class="project-card__link" target="_blank" rel="noopener noreferrer">Ver repositorio en GitHub →</a>
                         </article>
                     </div>
                 </div>
