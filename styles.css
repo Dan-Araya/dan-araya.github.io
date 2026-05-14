@@ -135,14 +135,18 @@ a:hover {
 
 .projects__grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
     gap: 24px;
 }
 
 .project-card {
     border: 1px solid var(--border);
-    padding: 28px;
+    padding: 32px;
     transition: border-color 200ms ease;
+    display: grid;
+    grid-template-columns: minmax(220px, 38%) 1fr;
+    gap: 32px;
+    align-items: start;
 }
 
 .project-card:hover {
@@ -151,27 +155,44 @@ a:hover {
 
 .project-card__thumbnail {
     width: 100%;
-    height: 140px;
-    margin-bottom: 20px;
+    height: 100%;
+    min-height: 220px;
+    margin-bottom: 0;
 }
 
 .project-card__title {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     font-weight: 400;
-    margin-bottom: 6px;
+    margin-bottom: 4px;
+}
+
+.project-card__subtitle {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--text-secondary);
+    margin-bottom: 16px;
 }
 
 .project-card__description {
     color: var(--text-secondary);
     font-size: 0.95rem;
-    margin-bottom: 16px;
+    margin-bottom: 20px;
 }
 
 .project-card__tags {
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
+    margin-bottom: 20px;
+}
+
+.project-card__link {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--accent);
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 2px;
 }
 
 .tag {
@@ -358,13 +379,15 @@ a:hover {
 /* ── Navigation ── */
 .nav {
     position: fixed;
-    left: 32px;
+    left: 0;
     top: 50%;
     transform: translateY(-50%);
     z-index: 100;
     display: flex;
     flex-direction: column;
     gap: 14px;
+    background: var(--bg);
+    padding: 24px 20px 24px 24px;
 }
 
 .nav__item {
@@ -471,10 +494,17 @@ a:hover {
     }
 }
 
+/* Reserve horizontal space for the fixed left nav whenever it's visible */
+@media (min-width: 768px) {
+    .section-inner {
+        padding-left: 170px;
+    }
+}
+
 /* Tablet — Refined spacing and proportions */
 @media (min-width: 768px) and (max-width: 1023px) {
     .section-inner {
-        padding: 80px 48px;
+        padding: 80px 48px 80px 170px;
     }
 
     .hero__name {
@@ -499,6 +529,16 @@ a:hover {
 
     .projects__grid {
         grid-template-columns: 1fr;
+    }
+
+    .project-card {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 24px;
+    }
+
+    .project-card__thumbnail {
+        min-height: 160px;
     }
 
     .about__content {
