@@ -230,6 +230,12 @@
             English summary: End-to-end AWS data pipeline that ingests Bitcoin market data from Binance and Buda.com at minute-level granularity, combined with daily USD/CLP FX rates from the Central Bank of Chile. The pipeline normalizes data into a unified Silver layer in Parquet and exposes it via Athena with partition projection for cost-controlled analytical queries. Built with Lambda, Step Functions, S3, Glue, and Terraform. Demo query identifies sustained arbitrage episodes (Buda premium ≥ 1%) across 9 years of data.
         </blockquote>
 
+        <p style="margin-bottom: 32px;">
+            <a href="https://github.com/Dan-Araya/Pipeline-de-datos-para-analisis-de-arbitraje-de-BTC" target="_blank" rel="noopener noreferrer" style="font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent); padding-bottom: 2px;">
+                Ver repositorio en GitHub →
+            </a>
+        </p>
+
         <h2>Resultados</h2>
 
         <p>En los casi 9 años de datos analizados (agosto 2017 a abril 2026), se identificaron 34 horas de oportunidades de arbitraje significativas. Se define como "oportunidad significativa" aquella que presentó estas dos características simultáneamente:</p>
