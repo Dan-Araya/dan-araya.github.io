@@ -6,7 +6,7 @@
     <title>Pipeline de datos para análisis histórico de arbitraje de BTC — Dan Araya</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=JetBrains+Mono:wght@300;400&family=Source+Sans+3:wght@300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <style>
         .prose-page {
@@ -74,7 +74,7 @@
         }
 
         .prose-page pre {
-            background: #F4F3ED;
+            background: var(--surface);
             border: 1px solid var(--border);
             padding: 20px 24px;
             margin: 24px 0;
@@ -85,16 +85,16 @@
 
         .prose-page pre code {
             font-family: 'JetBrains Mono', monospace;
-            font-weight: 300;
+            font-weight: 400;
             font-size: inherit;
         }
 
         .prose-page code {
             font-family: 'JetBrains Mono', monospace;
-            font-weight: 300;
+            font-weight: 400;
             font-size: 0.85em;
             color: var(--accent);
-            background: #F4F3ED;
+            background: var(--surface);
             padding: 1px 5px;
         }
 
@@ -166,14 +166,14 @@
         }
 
         .prose-page .badge--yellow {
-            border-color: #BBA040;
-            color: #BBA040;
+            border-color: var(--warning);
+            color: var(--warning);
         }
 
         .prose-page .mermaid-container {
             margin: 32px 0;
             padding: 24px;
-            background: #F4F3ED;
+            background: var(--surface);
             border: 1px solid var(--border);
             overflow-x: auto;
         }
@@ -211,11 +211,12 @@
         }
     </style>
 </head>
-<body>
+<body class="case-page">
+    <div class="workspace-header"><a class="workspace-brand" href="index.html#projects">◈ <span>DAN ARAYA</span></a><span class="workspace-path">~/portfolio/proyectos/<span>btc-pipeline.md</span></span><a class="workspace-github" href="index.html#projects">Volver ↗</a></div>
 
     <main class="prose-page">
 
-        <a href="index.html" class="prose-page__back">
+        <a href="index.html#projects" class="prose-page__back">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                 <polyline points="15 18 9 12 15 6"/>
             </svg>
@@ -738,13 +739,14 @@ aws s3 cp s3://btc-arbitrage-athena-results-001/queries/${QID}.csv query_results
         mermaid.initialize({
             startOnLoad: true,
             theme: 'base',
+            fontFamily: 'JetBrains Mono, monospace',
             themeVariables: {
-                primaryColor: '#F4F3ED',
-                primaryTextColor: '#1A1A1A',
-                primaryBorderColor: '#D6D3C8',
-                lineColor: '#6B6B6B',
-                secondaryColor: '#F4F3ED',
-                tertiaryColor: '#F4F3ED'
+                primaryColor: '#181b21',
+                primaryTextColor: '#dce0e8',
+                primaryBorderColor: '#353b46',
+                lineColor: '#7d8597',
+                secondaryColor: '#181b21',
+                tertiaryColor: '#1f232b'
             },
             flowchart: {
                 useMaxWidth: true,

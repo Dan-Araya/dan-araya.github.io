@@ -6,10 +6,17 @@
     <title>Dan Araya — Portfolio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=JetBrains+Mono:wght@300;400&family=Source+Sans+3:wght@300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body class="portfolio-page">
+    <a class="skip-link" href="#hero">Ir al contenido</a>
+    <div class="workspace-header">
+        <a class="workspace-brand" href="#hero">◈ <span>DAN ARAYA</span></a>
+        <span class="workspace-path">~/portfolio/<span id="currentNote">inicio.md</span></span>
+        <a class="workspace-github" href="https://github.com/Dan-Araya" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+    </div>
+    <div class="workspace-status"><span><i aria-hidden="true"></i> Disponible para trabajar</span><span id="sectionStatus">01 / 07</span><span>Coquimbo, Chile <span class="status-format">│ Markdown</span></span></div>
     <!-- Scroll track creates vertical scroll distance for GSAP -->
     <div class="scroll-track" aria-hidden="true"></div>
 
@@ -20,12 +27,14 @@
             <!-- Hero -->
             <header class="section section--hero" id="hero">
                 <div class="section-inner">
-                    <h1 class="hero__name animate-in">Dan Araya</h1>
+                    <div class="note-properties animate-in"><span>tipo <b>portfolio</b></span><span>enfoque <b>software &amp; datos</b></span></div>
+                    <p class="hero__prompt animate-in">dan@portfolio <span>~</span> $ whoami</p>
+                    <h1 class="hero__name animate-in">Dan Araya<span class="terminal-cursor" aria-hidden="true">_</span></h1>
                     <p class="hero__tagline animate-in">Software Engineer</p>
                     <p class="hero__subtitle animate-in">WebAssembly · C/C++ · Python · React · AWS</p>
                     <p class="hero__location animate-in">Coquimbo, Chile</p>
                     <div class="hero__scroll-hint animate-in">
-                        <span>Desliza para explorar</span>
+                        <span>Explorar el workspace</span>
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                             <line x1="5" y1="12" x2="19" y2="12"/>
                             <polyline points="12 5 19 12 12 19"/>
@@ -288,8 +297,10 @@
     </div>
 
     <!-- Navigation -->
-    <nav class="nav" aria-label="Section navigation">
-        <button class="nav__item is-active" data-index="0">Hero</button>
+    <nav class="nav" aria-label="Secciones del portfolio">
+        <span class="nav__heading">EXPLORADOR <span>07</span></span>
+        <span class="nav__folder">⌄ portfolio /</span>
+        <button class="nav__item is-active" data-index="0">Inicio</button>
         <button class="nav__item" data-index="1">Proyectos</button>
         <button class="nav__item" data-index="2">Experiencia</button>
         <button class="nav__item" data-index="3">Sobre mí</button>
