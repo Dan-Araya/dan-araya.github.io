@@ -47,16 +47,33 @@
             <section class="section section--projects" id="projects">
                 <div class="section-inner">
                     <h2 class="projects__heading animate-in">Proyectos</h2>
-                    <!--
-                        SLOT DESTACADO. Cuando SpiderMonkey → WebAssembly esté documentado:
-                        1. Pega su <article class="project-card project-card--featured"> aquí arriba.
-                        2. Mueve esta tarjeta de BTC a projects__secondary como project-card--compact
-                           (quitando el thumbnail); el grid es auto-fit y absorbe la tercera columna solo.
-                    -->
-                    <article class="project-card project-card--featured animate-in" onclick="location.href='proyecto.html'" style="cursor:pointer">
-                        <div class="project-card__thumbnail" style="background: url('assets/cover.png') center/cover no-repeat"></div>
+                    <div class="projects__grid">
+                    <article class="project-card project-card--featured animate-in">
+                        <figure class="project-card__preview">
+                            <img class="project-card__thumbnail" src="assets/terral-demo.jpg" alt="Panel de Terral con probabilidades por horizonte y observaciones meteorológicas sintéticas" loading="lazy">
+                            <figcaption>Demo local · datos sintéticos</figcaption>
+                        </figure>
                         <div class="project-card__body">
-                            <h3 class="project-card__title">Pipeline de datos para arbitraje histórico de BTC</h3>
+                            <h3 class="project-card__title">Terral — Observatorio del Valle del Elqui</h3>
+                            <p class="project-card__subtitle">Datos meteorológicos · Modelado estadístico · Aplicación web</p>
+                            <p class="project-card__description">Explora si es posible anticipar el inicio del terral con observaciones de INIA Vicuña y Pisco Elqui. Integra adquisición, control de calidad y trazabilidad en SQLite con <strong>seis modelos de regresión logística, de 1 a 24 horas</strong>. Entrenamiento con 2013–2021 y evaluación con 2022–2023; publicación transaccional y panel web. <strong>Observatorio experimental</strong>, con límites temporales y de disponibilidad de datos documentados.</p>
+                            <div class="project-card__tags">
+                                <span class="tag">Python</span>
+                                <span class="tag">SQLite</span>
+                                <span class="tag">Regresión logística</span>
+                                <span class="tag">JavaScript</span>
+                                <span class="tag">Gunicorn · Caddy</span>
+                            </div>
+                            <div class="project-card__links">
+                                <a href="https://www.terral.live/" class="project-card__link" target="_blank" rel="noopener noreferrer">Ver observatorio ↗</a>
+                                <a href="https://github.com/Dan-Araya/terral" class="project-card__link" target="_blank" rel="noopener noreferrer">Código en GitHub ↗</a>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="project-card project-card--featured animate-in">
+                        <img class="project-card__thumbnail project-card__thumbnail--diagram" src="assets/cover.png" alt="Diagrama de arquitectura del pipeline de datos de BTC" loading="lazy">
+                        <div class="project-card__body">
+                            <h3 class="project-card__title">Pipeline de datos para análisis histórico de arbitraje de BTC</h3>
                             <p class="project-card__subtitle">AWS Serverless · Medallion · Terraform</p>
                             <p class="project-card__description">Reconstruye 9 años de spreads de BTC entre Buda.com (CLP) y Binance (USDT), normalizados por el tipo de cambio del Banco Central. Ingesta heterogénea, OHLCV minutal desde trades crudos y consulta vía Glue + Athena con partition projection: <strong>10,4 millones de velas</strong>, y una query identifica episodios de prima ≥ 1% en ~3 segundos.</p>
                             <div class="project-card__tags">
@@ -67,38 +84,9 @@
                                 <span class="tag">Terraform</span>
                                 <span class="tag">Parquet</span>
                             </div>
-                            <a href="proyecto.html" class="project-card__link" onclick="event.stopPropagation()">Leer el caso completo →</a>
+                            <a href="proyecto.html" class="project-card__link">Leer el caso completo →</a>
                         </div>
                     </article>
-
-                    <div class="projects__secondary">
-                        <article class="project-card project-card--compact animate-in">
-                            <div class="project-card__body">
-                                <h3 class="project-card__title">vox2txt</h3>
-                                <p class="project-card__subtitle">Python · faster-whisper · Linux y Windows</p>
-                                <p class="project-card__description">Dictado por voz global: mantienes una tecla, hablas, y el texto se pega en la ventana activa. Transcripción 100% local. Resuelve permisos de <code>uinput</code>, hotkeys globales y portapapeles en ambos sistemas.</p>
-                                <div class="project-card__tags">
-                                    <span class="tag">Python</span>
-                                    <span class="tag">Whisper</span>
-                                    <span class="tag">systemd</span>
-                                </div>
-                                <a href="https://github.com/Dan-Araya/vox2txt" class="project-card__link" target="_blank" rel="noopener noreferrer">Ver en GitHub →</a>
-                            </div>
-                        </article>
-
-                        <article class="project-card project-card--compact animate-in">
-                            <div class="project-card__body">
-                                <h3 class="project-card__title">Graphite</h3>
-                                <p class="project-card__subtitle">Rust · TUI · En desarrollo</p>
-                                <p class="project-card__description">Workspace de notas Markdown enlazadas para la terminal. Mantiene los <code>.md</code> como fuente de verdad y construye encima navegación, propiedades, wiki links y backlinks.</p>
-                                <div class="project-card__tags">
-                                    <span class="tag">Rust</span>
-                                    <span class="tag">ratatui</span>
-                                    <span class="tag">Markdown</span>
-                                </div>
-                                <a href="https://github.com/Dan-Araya/Graphite" class="project-card__link" target="_blank" rel="noopener noreferrer">Ver en GitHub →</a>
-                            </div>
-                        </article>
                     </div>
                 </div>
             </section>
@@ -150,7 +138,7 @@
                         <div class="about__bio">
                             <p class="animate-in">Fue en 2023. Tenía un trabajo que consistía en extraer datos laborales, imágenes y geolocalización para armar informes diarios. Le contaba a un amigo que estudiaba informática lo que hacía y me dijo: "¿Y no has pensado automatizarlo con Python?". Me quedé mudo ante esa palabra de resonancia arcana. No sabía lo que era, así que me puse a investigar. Tras un par de videos y mis primeros "hola mundo", descubrí que era exactamente lo que necesitaba: esas automatizaciones llevaron la contabilización de sobreproducción de residuos de ~250 mil a más de un millón de litros mensuales.</p>
                             <p class="animate-in">Vinieron scripts para crear directorios, buscar strings en PDFs (<a href="https://github.com/Dan-Araya/pdf.extractor" target="_blank" rel="noopener">pdf.extractor</a>) y descargar datos con Selenium. Me motivé tanto que con dos amigos postulamos a un Fondo Semilla Inicia para dar acceso remoto a recursos computacionales, y ganamos la ejecución. Ahí aprendí que montar algo serio es realmente difícil: cerramos el programa con éxito y decidimos no continuar más allá de él.</p>
-                            <p class="animate-in">Hoy trabajo como desarrollador freelance en automatización asistida por IA, y en paralelo construyo herramientas propias: dictado por voz offline en Python, un workspace de notas en Rust y una migración de SpiderMonkey a WebAssembly. Lo que me interesa es lo mismo de siempre: diseñar procesos reproducibles, instrumentar decisiones con datos reales y documentar lo que funciona (y lo que no).</p>
+                            <p class="animate-in">Hoy trabajo como desarrollador freelance en automatización asistida por IA, y en paralelo desarrollo Terral, un observatorio experimental que combina datos meteorológicos, modelos estadísticos y una aplicación web para explorar la anticipación del terral del Valle del Elqui. Junto al pipeline de arbitraje de BTC, es uno de mis proyectos principales. Lo que me interesa es lo mismo de siempre: diseñar procesos reproducibles, instrumentar decisiones con datos reales y documentar lo que funciona (y lo que no).</p>
                         </div>
                     </div>
                 </div>
