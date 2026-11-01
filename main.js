@@ -1,7 +1,7 @@
 (function () {
     var hasAnimation = typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined';
     if (hasAnimation) gsap.registerPlugin(ScrollTrigger);
-    var linearQuery = window.matchMedia('(max-width: 1023px), (max-height: 640px), (prefers-reduced-motion: reduce)');
+    var linearQuery = window.matchMedia('(max-width: 1199px), (max-height: 640px), (prefers-reduced-motion: reduce)');
     var sectionIds = ['hero', 'projects', 'experience', 'about', 'skills', 'educacion', 'contact'];
     var noteNames = ['inicio', 'proyectos', 'experiencia', 'sobre-mi', 'stack', 'educacion', 'contacto'];
     var observer;
