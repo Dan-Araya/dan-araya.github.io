@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terral · Observatorio del Valle del Elqui · Dan Araya</title>
+    <meta name="description" content="Un observatorio experimental que integra datos meteorológicos de CEAZA, modelos de regresión logística y una aplicación web para explorar el inicio del terral.">
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg?v=dan">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css?v=20261101-contact-6">
+    <link rel="stylesheet" href="case-study.css">
+</head>
+<body class="case-page">
+    <a class="skip-link" href="#contenido">Ir al contenido</a>
+    <div class="workspace-header"><a class="workspace-brand" href="index.html#projects">◈ <span>DAN ARAYA</span></a><span class="workspace-path">~/portfolio/proyectos/<span>terral.md</span></span><a class="workspace-github" href="index.html#projects">Volver ↗</a></div>
+    <main class="prose-page" id="contenido">
+        <a href="index.html#projects" class="prose-page__back">← Volver al portfolio</a>
+        <h1>Terral · Observatorio del Valle del Elqui</h1>
+        <p>¿Es posible anticipar el inicio del terral con las observaciones de las estaciones del valle? Terral explora esa pregunta mediante una aplicación que reúne datos meteorológicos y estimaciones de machine learning en un mismo lugar.</p>
+        <div class="case-links">
+            <a href="https://www.terral.live/" target="_blank" rel="noopener noreferrer">Ver observatorio ↗</a>
+            <a href="https://github.com/Dan-Araya/terral" target="_blank" rel="noopener noreferrer">Código en GitHub ↗</a>
+        </div>
+        <figure>
+            <img src="assets/terral-dashboard.jpg" width="1265" height="1096" alt="Dashboard de Terral con la estimación de inicio, los horizontes del modelo y la evolución de las observaciones meteorológicas">
+            <figcaption>Captura del observatorio: estimación central, selección de horizonte y observaciones meteorológicas.</figcaption>
+        </figure>
+        <h2>El problema</h2>
+        <p>El terral es un viento cálido y seco característico del Valle del Elqui. El proyecto busca reconocer condiciones asociadas a este fenómeno y estimar si podrían comenzar en las horas siguientes. La identificación mediante criterios meteorológicos es una aproximación al fenómeno, no una confirmación de cada episodio.</p>
+        <h2>De los datos a la aplicación</h2>
+        <p>El trabajo integra adquisición, validación y almacenamiento en SQLite con modelos de regresión logística y una aplicación web de consulta. Python permite trabajar con los datos y los modelos; JavaScript forma parte de la interfaz.</p>
+        <ol>
+            <li><strong>Adquisición:</strong> registros de CEAZA, publicados en CEAZAMet, para las estaciones INIA Vicuña y Pisco Elqui.</li>
+            <li><strong>Preparación:</strong> validación de observaciones y construcción de ventanas con datos disponibles en ambas estaciones.</li>
+            <li><strong>Estimación:</strong> modelos que utilizan temperatura, humedad, viento y presión para explorar el posible inicio del criterio.</li>
+            <li><strong>Consulta:</strong> un dashboard con estimaciones por horizonte y gráficas para revisar la evolución de las observaciones.</li>
+        </ol>
+        <h2>Cómo se evaluó</h2>
+        <p>Se entrenaron seis modelos de regresión logística con regularización L2 para horizontes de 1, 3, 6, 8, 12 y 24 horas. El entrenamiento utiliza datos de 2013 a 2021 y la evaluación, datos de 2022 y 2023.</p>
+        <p>Las estimaciones se comparan con una referencia de probabilidad fija. También se evalúan los episodios anticipados, la anticipación y las falsas alarmas. La <a href="https://www.terral.live/metodologia" target="_blank" rel="noopener noreferrer">metodología del observatorio</a> documenta los resultados y sus condiciones de evaluación.</p>
+        <h2>Alcance y próximos pasos</h2>
+        <p>El observatorio es experimental. Un horizonte de seis horas representa una ventana de posible inicio, no una hora exacta. La disponibilidad, frescura y interpretación temporal de las observaciones también condicionan las estimaciones.</p>
+        <p>Los próximos pasos incluyen ampliar la evaluación a 2024 a 2026 y estudiar el equilibrio entre anticipación, detección y falsas alarmas.</p>
+        <h2>Fuentes</h2>
+        <ul>
+            <li><a href="https://www.ceazamet.cl/" target="_blank" rel="noopener noreferrer">CEAZAMet</a>: observaciones meteorológicas de CEAZA.</li>
+            <li><a href="https://www.terral.live/metodologia" target="_blank" rel="noopener noreferrer">Metodología de Terral</a>: criterios, evaluación y limitaciones.</li>
+        </ul>
+        <a href="index.html#projects" class="prose-page__back">← Volver a proyectos</a>
+    </main>
+</body>
+</html>

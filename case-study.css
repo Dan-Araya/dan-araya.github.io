@@ -1,0 +1,13 @@
+.prose-page { max-width: 840px; margin: 0 auto; padding: 120px 24px 80px; }
+.prose-page__back { display: inline-block; margin-bottom: 48px; font-size: .8rem; color: var(--text-secondary); }
+.prose-page h1 { font-size: clamp(2rem, 3.5vw, 3.2rem); margin-bottom: 20px; }
+.prose-page h2 { font-size: 1.5rem; margin: 56px 0 16px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
+.prose-page p, .prose-page li { color: var(--text-secondary); font-size: 1rem; line-height: 1.8; }
+.prose-page p { margin-bottom: 20px; }
+.prose-page ul, .prose-page ol { padding-left: 24px; margin-bottom: 24px; }
+.prose-page li { margin-bottom: 12px; }
+.prose-page figure { margin: 32px 0; }
+.prose-page img { display: block; max-width: 100%; height: auto; border: 1px solid var(--border); }
+.prose-page figcaption { color: var(--muted); font-size: .75rem; margin-top: 10px; }
+.case-links { display: flex; flex-wrap: wrap; gap: 12px 24px; margin: 24px 0; font-size: .85rem; }
+@media (max-width: 600px) { .prose-page { padding: 100px 22px 60px; } .prose-page h2 { font-size: 1.25rem; } }
