@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dan Araya — Portfolio</title>
+    <title>Dan Araya · Portfolio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css?v=20261101-responsive-2">
+    <link rel="stylesheet" href="styles.css?v=20261101-contact-6">
 </head>
 <body class="portfolio-page">
     <a class="skip-link" href="#hero">Ir al contenido</a>
@@ -27,11 +27,11 @@
             <!-- Hero -->
             <header class="section section--hero" id="hero">
                 <div class="section-inner">
-                    <div class="note-properties animate-in"><span>tipo <b>portfolio</b></span><span>enfoque <b>software &amp; datos</b></span></div>
+                    <div class="note-properties animate-in"><span>enfoque <b>nube · automatización · datos · machine learning</b></span></div>
                     <p class="hero__prompt animate-in">dan@portfolio <span>~</span> $ whoami</p>
                     <h1 class="hero__name animate-in">Dan Araya<span class="terminal-cursor" aria-hidden="true">_</span></h1>
-                    <p class="hero__tagline animate-in">Software Engineer</p>
-                    <p class="hero__subtitle animate-in">WebAssembly · C/C++ · Python · React · AWS</p>
+                    <h2 class="hero__tagline animate-in">Software Engineer</h2>
+                    <p class="hero__subtitle animate-in">Python · JavaScript · SQL · React · AWS<br>C/C++ · WebAssembly</p>
                     <p class="hero__location animate-in">Coquimbo, Chile</p>
                     <div class="hero__scroll-hint animate-in">
                         <span>Explorar el workspace</span>
@@ -49,20 +49,17 @@
                     <h2 class="projects__heading animate-in">Proyectos</h2>
                     <div class="projects__grid">
                     <article class="project-card project-card--featured animate-in">
-                        <figure class="project-card__preview">
-                            <img class="project-card__thumbnail" src="assets/terral-demo.jpg" alt="Panel de Terral con probabilidades por horizonte y observaciones meteorológicas sintéticas" loading="lazy">
-                            <figcaption>Demo local · datos sintéticos</figcaption>
-                        </figure>
+                        <a class="project-card__preview" href="assets/terral-dashboard.jpg" target="_blank" rel="noopener noreferrer" aria-label="Ampliar captura del dashboard de Terral">
+                            <img class="project-card__thumbnail" src="assets/terral-dashboard.jpg" alt="Dashboard de Terral con la estimación central completa y la evolución de la velocidad del viento" loading="lazy" width="1265" height="1096">
+                        </a>
                         <div class="project-card__body">
-                            <h3 class="project-card__title">Terral — Observatorio del Valle del Elqui</h3>
-                            <p class="project-card__subtitle">Datos meteorológicos · Modelado estadístico · Aplicación web</p>
-                            <p class="project-card__description">Explora si es posible anticipar el inicio del terral con observaciones de INIA Vicuña y Pisco Elqui. Integra adquisición, control de calidad y trazabilidad en SQLite con <strong>seis modelos de regresión logística, de 1 a 24 horas</strong>. Entrenamiento con 2013–2021 y evaluación con 2022–2023; publicación transaccional y panel web. <strong>Observatorio experimental</strong>, con límites temporales y de disponibilidad de datos documentados.</p>
+                            <h3 class="project-card__title">Terral · Observatorio del Valle del Elqui</h3>
+                            <p class="project-card__description">Observatorio meteorológico experimental del Valle del Elqui. Utiliza registros de CEAZA para estimar el inicio del terral mediante modelos de regresión logística. Integra adquisición, validación y almacenamiento de datos con una aplicación web de consulta.</p>
                             <div class="project-card__tags">
                                 <span class="tag">Python</span>
                                 <span class="tag">SQLite</span>
                                 <span class="tag">Regresión logística</span>
                                 <span class="tag">JavaScript</span>
-                                <span class="tag">Gunicorn · Caddy</span>
                             </div>
                             <div class="project-card__links">
                                 <a href="https://www.terral.live/" class="project-card__link" target="_blank" rel="noopener noreferrer">Ver observatorio ↗</a>
@@ -71,11 +68,12 @@
                         </div>
                     </article>
                     <article class="project-card project-card--featured animate-in">
-                        <img class="project-card__thumbnail project-card__thumbnail--diagram" src="assets/cover.png" alt="Diagrama de arquitectura del pipeline de datos de BTC" loading="lazy">
+                        <a class="project-card__preview" href="proyecto.html" aria-label="Ver el detalle del pipeline de BTC">
+                            <img class="project-card__thumbnail project-card__thumbnail--diagram" src="assets/btc-pipeline.svg" alt="Fuentes Buda.com, Binance y tipo de cambio; ingesta con Lambda y Step Functions; almacenamiento en S3 y Parquet; consultas SQL en Athena" loading="lazy" width="480" height="640">
+                        </a>
                         <div class="project-card__body">
-                            <h3 class="project-card__title">Pipeline de datos para análisis histórico de arbitraje de BTC</h3>
-                            <p class="project-card__subtitle">AWS Serverless · Medallion · Terraform</p>
-                            <p class="project-card__description">Reconstruye 9 años de spreads de BTC entre Buda.com (CLP) y Binance (USDT), normalizados por el tipo de cambio del Banco Central. Ingesta heterogénea, OHLCV minutal desde trades crudos y consulta vía Glue + Athena con partition projection: <strong>10,4 millones de velas</strong>, y una query identifica episodios de prima ≥ 1% en ~3 segundos.</p>
+                            <h3 class="project-card__title">Pipeline de datos: Arbitraje de BTC</h3>
+                            <p class="project-card__description">Pipeline serverless en AWS que reconstruye nueve años de datos de arbitraje entre Buda.com y Binance. Procesa <strong>10,4 millones de velas</strong> y permite analizarlas mediante consultas SQL en Athena.</p>
                             <div class="project-card__tags">
                                 <span class="tag">Python</span>
                                 <span class="tag">AWS Lambda</span>
@@ -98,11 +96,12 @@
                     <div class="experience__list">
                         <article class="experience-entry animate-in">
                             <div class="experience-entry__info">
-                                <h3 class="experience-entry__title">Software Developer — AI Research &amp; Automation</h3>
+                                <h3 class="experience-entry__title">Software Developer · AI Automation</h3>
                                 <p class="experience-entry__company">Mindrift (Toloka) · Freelance · Remoto</p>
-                                <p class="experience-entry__detail">Automatización asíncrona en Python (asyncio/aiohttp) para extraer y estructurar <strong>más de 16.000 registros</strong> desde fuentes web públicas, con arquitectura Bronze → Silver → Gold. Consolidación multi-fuente vía APIs REST y SPARQL, y validación cruzada de contenido generado por LLMs contra fuentes primarias para detectar alucinaciones.</p>
+                                <p class="experience-entry__detail">Automatización asíncrona con Python (asyncio/aiohttp) para extraer y estructurar <strong>más de 16.000 registros</strong> de fuentes públicas, mediante una arquitectura Bronze → Silver → Gold.</p>
+                                <p class="experience-entry__detail">Integración de APIs REST y SPARQL. Verificación de contenido generado por LLM mediante contraste con fuentes primarias.</p>
                             </div>
-                            <span class="experience-entry__date">Mar 2026 — actualidad</span>
+                            <span class="experience-entry__date">Mar 2026 a actualidad</span>
                         </article>
                         <article class="experience-entry animate-in">
                             <div class="experience-entry__info">
@@ -110,21 +109,24 @@
                                 <p class="experience-entry__company">Aspha · Proyecto Corfo Semilla Inicia</p>
                                 <p class="experience-entry__detail">Lideré el desarrollo técnico de una plataforma de Cloud Gaming distribuido financiada por Corfo (<strong>CLP $20 millones</strong>). Arquitectura del sistema, frontend en React, infraestructura en AWS y contenerización con Docker.</p>
                             </div>
-                            <span class="experience-entry__date">Nov 2024 — Nov 2025</span>
+                            <span class="experience-entry__date">Nov 2024 a Nov 2025</span>
                         </article>
-                        <article class="experience-entry experience-entry--brief animate-in">
+                        <article class="experience-entry animate-in">
                             <div class="experience-entry__info">
                                 <h3 class="experience-entry__title">Ejecutivo de Habilitación Digital</h3>
                                 <p class="experience-entry__company">IPS ChileAtiende</p>
+                                <p class="experience-entry__detail">Guía y orientación a usuarios respecto al uso de las plataformas tecnológicas del Estado.</p>
                             </div>
-                            <span class="experience-entry__date">Abr 2024 — Mar 2026</span>
+                            <span class="experience-entry__date">Abr 2024 a Mar 2026</span>
                         </article>
-                        <article class="experience-entry experience-entry--brief animate-in">
+                        <article class="experience-entry animate-in">
                             <div class="experience-entry__info">
-                                <h3 class="experience-entry__title">Auxiliar Administrativo — automatización de reportería</h3>
+                                <h3 class="experience-entry__title">Administrativo de Gestión · Automatización y datos</h3>
                                 <p class="experience-entry__company">Starco | Demarco · La Serena</p>
+                                <p class="experience-entry__detail">Automatización con Python y Selenium de la descarga de registros fotográficos y el procesamiento de documentos PDF para reportes operacionales.</p>
+                                <p class="experience-entry__detail">Análisis de datos de recolección de residuos para identificar sobreproducción facturable, aumentando el volumen detectado desde aproximadamente <strong>250.000 hasta más de 1.000.000 de litros mensuales</strong>.</p>
                             </div>
-                            <span class="experience-entry__date">Abr 2022 — Mar 2024</span>
+                            <span class="experience-entry__date">Abr 2022 a Mar 2024</span>
                         </article>
                     </div>
                 </div>
@@ -136,9 +138,9 @@
                     <h2 class="about__heading animate-in">Sobre mí</h2>
                     <div class="about__content">
                         <div class="about__bio">
-                            <p class="animate-in">Fue en 2023. Tenía un trabajo que consistía en extraer datos laborales, imágenes y geolocalización para armar informes diarios. Le contaba a un amigo que estudiaba informática lo que hacía y me dijo: "¿Y no has pensado automatizarlo con Python?". Me quedé mudo ante esa palabra de resonancia arcana. No sabía lo que era, así que me puse a investigar. Tras un par de videos y mis primeros "hola mundo", descubrí que era exactamente lo que necesitaba: esas automatizaciones llevaron la contabilización de sobreproducción de residuos de ~250 mil a más de un millón de litros mensuales.</p>
-                            <p class="animate-in">Vinieron scripts para crear directorios, buscar strings en PDFs (<a href="https://github.com/Dan-Araya/pdf.extractor" target="_blank" rel="noopener">pdf.extractor</a>) y descargar datos con Selenium. Me motivé tanto que con dos amigos postulamos a un Fondo Semilla Inicia para dar acceso remoto a recursos computacionales, y ganamos la ejecución. Ahí aprendí que montar algo serio es realmente difícil: cerramos el programa con éxito y decidimos no continuar más allá de él.</p>
-                            <p class="animate-in">Hoy trabajo como desarrollador freelance en automatización asistida por IA, y en paralelo desarrollo Terral, un observatorio experimental que combina datos meteorológicos, modelos estadísticos y una aplicación web para explorar la anticipación del terral del Valle del Elqui. Junto al pipeline de arbitraje de BTC, es uno de mis proyectos principales. Lo que me interesa es lo mismo de siempre: diseñar procesos reproducibles, instrumentar decisiones con datos reales y documentar lo que funciona (y lo que no).</p>
+                            <p class="animate-in">Fue en 2023. Tenía un trabajo que consistía en extraer datos laborales, imágenes y geolocalización para armar informes diarios. Le contaba a un amigo que estudiaba informática lo que hacía y me dijo: "¿Y no has pensado automatizarlo con Python?". Me quedé mudo ante esa palabra de resonancia arcana. No sabía lo que era, así que me puse a investigar. Tras un par de videos y mis primeros "hola mundo", descubrí que era exactamente lo que necesitaba. Pronto hice unas automatizaciones que llevaron la contabilización de sobreproducción de residuos de ~250 mil a más de un millón de litros mensuales.</p>
+                            <p class="animate-in">Vinieron scripts para crear directorios, buscar strings en PDFs (<a href="https://github.com/Dan-Araya/pdf.extractor" target="_blank" rel="noopener">pdf.extractor</a>) y descargar datos con Selenium. Me motivé tanto que con dos amigos postulamos a un Fondo Semilla Inicia para dar acceso remoto a recursos computacionales, y ganamos la ejecución. Ahí aprendí que montar algo serio es mucho más difícil de lo que uno piensa. Aun así fue una experiencia enriquecedora: cerramos el programa con éxito y decidimos no continuar más allá de él.</p>
+                            <p class="animate-in">Hoy trabajo como desarrollador freelance en automatización asistida por IA, y en paralelo desarrollo Terral, un observatorio de meteorología experimental que utiliza machine learning para intentar predecir este particular fenómeno del Valle del Elqui. Junto al pipeline de arbitraje de BTC, es uno de mis proyectos principales. También tengo algunos otros proyectos menores, relacionados con Linux, WebAssembly e integración agéntica que puedes encontrar en mi <a href="https://github.com/Dan-Araya" target="_blank" rel="noopener noreferrer">GitHub</a>.</p>
                         </div>
                     </div>
                 </div>
@@ -219,13 +221,21 @@
             <section class="section section--blog" id="educacion">
                 <div class="section-inner">
                     <h2 class="blog__heading animate-in">Educación y certificaciones</h2>
-                    <div class="blog__list">
+                    <div class="education__grid">
                         <article class="blog-entry animate-in">
                             <div class="blog-entry__info">
                                 <h3 class="blog-entry__title">Ingeniería en Informática</h3>
                                 <p class="blog-entry__excerpt">Instituto Profesional IACC</p>
                             </div>
-                            <span class="blog-entry__date">2024 — 2028</span>
+                            <span class="blog-entry__date">2024 a 2028</span>
+                        </article>
+                        <article class="blog-entry animate-in">
+                            <div class="blog-entry__info">
+                                <h3 class="blog-entry__title">Intro to Machine Learning</h3>
+                                <p class="blog-entry__excerpt">Kaggle</p>
+                            </div>
+                            <span class="blog-entry__date">Expedición: nov. de 2026</span>
+                            <a class="education__credential" href="https://www.kaggle.com/learn/certification/danaraya/intro-to-machine-learning" target="_blank" rel="noopener noreferrer">Mostrar credencial ↗</a>
                         </article>
                         <article class="blog-entry animate-in">
                             <div class="blog-entry__info">
@@ -257,26 +267,47 @@
                 <div class="section-inner">
                     <h2 class="contact__heading animate-in">Contacto</h2>
                     <p class="contact__closing animate-in">Abierto a roles de Software Engineer o Data Engineer en la Región de Coquimbo, híbrido o en remoto.</p>
-                    <div class="contact__links animate-in">
-                        <a href="mailto:dan.araya.wk@gmail.com" class="contact__link">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                <rect x="2" y="4" width="20" height="16" rx="2"/>
-                                <polyline points="22 4 12 13 2 4"/>
-                            </svg>
-                            <span class="contact__email-text">dan.araya.wk@gmail.com</span>
-                        </a>
-                        <a href="https://github.com/Dan-Araya" class="contact__link" target="_blank" rel="noopener noreferrer">
-                            <svg viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
-                            </svg>
-                            GitHub
-                        </a>
-                        <a href="https://www.linkedin.com/in/dan-araya-19672a2bb" class="contact__link" target="_blank" rel="noopener noreferrer">
-                            <svg viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                            </svg>
-                            LinkedIn
-                        </a>
+                    <div class="contact__layout">
+                        <form class="contact__form animate-in" id="contactForm" action="https://formsubmit.co/dan.araya.wk@gmail.com" method="POST" aria-label="Formulario de contacto">
+                            <input type="hidden" name="_subject" value="Nuevo mensaje desde el portfolio">
+                            <input type="text" name="_honey" class="contact__honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
+                            <div class="contact__fields">
+                                <div class="contact__field">
+                                    <label for="contactName">Nombre</label>
+                                    <input id="contactName" name="name" type="text" autocomplete="name" maxlength="120" required>
+                                </div>
+                                <div class="contact__field">
+                                    <label for="contactEmail">Correo electrónico</label>
+                                    <input id="contactEmail" name="email" type="email" autocomplete="email" maxlength="254" required>
+                                </div>
+                            </div>
+                            <div class="contact__field">
+                                <label for="contactMessage">Mensaje</label>
+                                <textarea id="contactMessage" name="message" rows="5" maxlength="5000" required></textarea>
+                            </div>
+                            <button class="contact__submit" type="submit">Enviar mensaje ↗</button>
+                        </form>
+                        <div class="contact__links animate-in">
+                            <a href="mailto:dan.araya.wk@gmail.com" class="contact__link">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="2" y="4" width="20" height="16" rx="2"/>
+                                    <polyline points="22 4 12 13 2 4"/>
+                                </svg>
+                                <span class="contact__email-text">dan.araya.wk@gmail.com</span>
+                            </a>
+                            <a href="https://github.com/Dan-Araya" class="contact__link" target="_blank" rel="noopener noreferrer">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+                                </svg>
+                                GitHub
+                            </a>
+                            <a href="https://www.linkedin.com/in/dan-araya-19672a2bb" class="contact__link" target="_blank" rel="noopener noreferrer">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                                </svg>
+                                LinkedIn
+                            </a>
+                        </div>
                     </div>
                 </div>
             </footer>

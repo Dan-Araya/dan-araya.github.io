@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pipeline de datos para análisis histórico de arbitraje de BTC — Dan Araya</title>
+    <title>Pipeline de datos para análisis histórico de arbitraje de BTC · Dan Araya</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -344,8 +344,8 @@ flowchart TB
                 </tr>
                 <tr>
                     <td>Cobertura temporal</td>
-                    <td>2017-08 – 2026-04</td>
-                    <td>2015-01 – 2026-04</td>
+                    <td>2017-08 a 2026-04</td>
+                    <td>2015-01 a 2026-04</td>
                 </tr>
                 <tr>
                     <td>Días cubiertos</td>
@@ -625,9 +625,9 @@ aws s3 cp s3://btc-arbitrage-athena-results-001/queries/${QID}.csv query_results
 
         <h3>3. Granularidad adaptativa por sampling empírico (Buda)</h3>
 
-        <p>A diferencia de Binance, donde un mes siempre es un archivo, Buda divide cada mes en 1, 2 o 4–5 archivos según el volumen muestreado del día 15. El generador (<code>generate_buda_periods.py</code>) traduce el sample a una estimación de <code>wall_clock</code> para una Lambda y ajusta la granularidad para mantenerse dentro del timeout de 900s por Lambda con margen.</p>
+        <p>A diferencia de Binance, donde un mes siempre es un archivo, Buda divide cada mes en 1, 2 o 4-5 archivos según el volumen muestreado del día 15. El generador (<code>generate_buda_periods.py</code>) traduce el sample a una estimación de <code>wall_clock</code> para una Lambda y ajusta la granularidad para mantenerse dentro del timeout de 900s por Lambda con margen.</p>
 
-        <p>La heurística falla en meses con eventos exógenos concentrados temporalmente (ej. el rally de BTC del 24–31 dic 2020): el sample del día 15 cayó en zona calma y subestimó el mes. Mitigación aplicada: override puntual sub-semanal en quincenas problemáticas.</p>
+        <p>La heurística falla en meses con eventos exógenos concentrados temporalmente (ej. el rally de BTC del 24-31 dic 2020): el sample del día 15 cayó en zona calma y subestimó el mes. Mitigación aplicada: override puntual sub-semanal en quincenas problemáticas.</p>
 
         <h3>4. Throttle calibrado empíricamente con instrumentación</h3>
 
@@ -656,7 +656,7 @@ aws s3 cp s3://btc-arbitrage-athena-results-001/queries/${QID}.csv query_results
 
         <p>La consecuencia operacional es que <strong>cada Lambda Silver re-procesa todo Bronze en cada invocación</strong>, sin estado intermedio que reconciliar. Esto significa reproducibilidad total: <code>bronze + código → silver</code> es determinístico, sin "última partición procesada" ni delta tracking. Para el volumen actual (10.4M velas en menos de 2 minutos) el costo es trivial.</p>
 
-        <p>La expresión técnica de esta filosofía en el catálogo es <strong>partition projection</strong> en lugar de catálogo dinámico tipo MSCK: las particiones de <code>unified_candles</code> se infieren por fórmula declarativa (year ∈ [2017,2026] × month ∈ [01,12]), no se registran como filas mutables en Glue. Ningún paso post-Silver tiene que ejecutar <code>MSCK REPAIR TABLE</code> o <code>ALTER TABLE ADD PARTITION</code> — el catálogo es 100% declarativo en Terraform, en paralelo con la idempotencia del pipeline. El resultado: la query de demostración escanea 125 MB de 9 años de datos en ~3 segundos, con un workgroup que corta cualquier query que exceda 200 MB.</p>
+        <p>La expresión técnica de esta filosofía en el catálogo es <strong>partition projection</strong> en lugar de catálogo dinámico tipo MSCK: las particiones de <code>unified_candles</code> se infieren por fórmula declarativa (year ∈ [2017,2026] × month ∈ [01,12]), no se registran como filas mutables en Glue. Ningún paso post-Silver tiene que ejecutar <code>MSCK REPAIR TABLE</code> o <code>ALTER TABLE ADD PARTITION</code> · el catálogo es 100% declarativo en Terraform, en paralelo con la idempotencia del pipeline. El resultado: la query de demostración escanea 125 MB de 9 años de datos en ~3 segundos, con un workgroup que corta cualquier query que exceda 200 MB.</p>
 
         <h2>Roadmap</h2>
 
@@ -706,7 +706,7 @@ aws s3 cp s3://btc-arbitrage-athena-results-001/queries/${QID}.csv query_results
             <li><strong>Los geo-bloqueos son una fricción inesperada e indocumentada.</strong> El diagnóstico de un <code>HTTP 451</code> desde Lambda en us-east-2 fue lo que motivó investigar el estado del dominio binance.com. Publicaciones en noticieros sobre el bloqueo fueron las que motivaron la migración al subdominio público de market data. El "ping de diagnóstico" (loguear la IP de salida al inicio del handler) ahorró horas de debugging y se volvió práctica estándar en ambas Lambdas.</li>
             <li><strong>Paralelización trivial &gt; optimización compleja.</strong> El backfill de Binance pasó de ~1 día (script secuencial) a 7.5 minutos con Step Functions con concurrencia 3, sin tocar el código del handler.</li>
             <li><strong>Instrumentar antes de optimizar.</strong> El throttle de Buda se bajó tres veces basándose en métricas de cada ejecución (<code>effective_rps</code>, <code>wall_clock</code>). Sin esa instrumentación, cualquier ajuste habría sido especulativo. La evidencia de 92 ejecuciones a 3.0s sin un solo <code>429</code> fue lo que justificó pasar a 2.0s.</li>
-            <li><strong>Las heurísticas de muestreo fallan en distribuciones heterogéneas.</strong> El sample del día 15 funciona bien para meses con volumen uniforme, pero subestima sistemáticamente meses con eventos exógenos concentrados (rally del 24–31 dic 2020, flash crash del 19 may 2021). El sistema correcto no es uno con un sample mejor, sino uno con override puntual cuando el sample falla: más simple y más robusto.</li>
+            <li><strong>Las heurísticas de muestreo fallan en distribuciones heterogéneas.</strong> El sample del día 15 funciona bien para meses con volumen uniforme, pero subestima sistemáticamente meses con eventos exógenos concentrados (rally del 24-31 dic 2020, flash crash del 19 may 2021). El sistema correcto no es uno con un sample mejor, sino uno con override puntual cuando el sample falla: más simple y más robusto.</li>
             <li><strong>"Bronze fiel a la fuente por el costo de la limpieza".</strong> Documentar el solapamiento de paginación en lugar de evitarlo en el handler significa que cualquier cambio futuro en la lógica de limpieza (Silver) se hace sin re-llamar a las APIs. La asimetría de concesiones es enorme: un costo trivial (deduplicar en Silver) por un beneficio gigantesco (idempotencia completa del re-procesamiento).</li>
             <li><strong>Refactorizar totalmente a posteriori es una mala respuesta a un fallo puntual.</strong> Hubo dos momentos en el backfill de Buda donde fue tentador reescribir el sistema (hacer un Lambda chaining, o un scheduler intermedio). En ambos casos, la respuesta correcta fue un parámetro mejor calibrado en vez de hacer una arquitectura nueva que considerara esa complejidad desde un comienzo. Relacionado con <a href="https://blog.prototypr.io/galls-law-93c8ef8b651e?gi=cb505cb8f997" target="_blank" rel="noopener noreferrer">Gall's Law</a>.</li>
         </ul>
@@ -718,17 +718,17 @@ aws s3 cp s3://btc-arbitrage-athena-results-001/queries/${QID}.csv query_results
         <ul>
             <li><strong>Filtro de interpoladas como decisión de query.</strong> Las velas Buda con <code>is_interpolated = true</code> representan minutos sin trades reales (~81% del total), por lo que su precio se reconstruyó a partir del último trade conocido. La query de demostración filtra estas velas para reportar "episodios con liquidez efectiva", pero este filtro introduce un sesgo de selección: los minutos con trade real correlacionan con momentos de mayor actividad de mercado, que pueden a su vez correlacionar con spreads más altos. La métrica reportada es defendible pero no representa el spread "del mercado", sino el spread observable cuando Buda transó.</li>
             <li><strong>Gold no materializado, queries on-the-fly.</strong> Las consultas de análisis se resuelven directamente desde Silver vía Athena, sin tablas pre-agregadas. El tiempo de respuesta es de ~3 segundos sobre 9 años de data, suficiente para uso exploratorio. Una aplicación que requiera sub-segundo o consultas frecuentes (dashboard interactivo, API pública) justificaría materializar Gold; el proyecto V1 no lo hace.</li>
-            <li><strong>Spread teórico, no spread ejecutable.</strong> Las métricas reportadas usan precios de cierre (<code>close_clp</code>) pero no consideran liquidez disponible en el orderbook ni profundidad de mercado. Un spread de 5% sobre 0.1 BTC disponibles no es la misma oportunidad que sobre 10 BTC. Tampoco se descuentan fees reales por episodio (Binance ~0.1%, Buda 0.4–0.8%, más costos de movimiento de fondos), aunque el umbral de 1% está calibrado conservadoramente para cubrirlos como mínimo.</li>
+            <li><strong>Spread teórico, no spread ejecutable.</strong> Las métricas reportadas usan precios de cierre (<code>close_clp</code>) pero no consideran liquidez disponible en el orderbook ni profundidad de mercado. Un spread de 5% sobre 0.1 BTC disponibles no es la misma oportunidad que sobre 10 BTC. Tampoco se descuentan fees reales por episodio (Binance ~0.1%, Buda 0.4-0.8%, más costos de movimiento de fondos), aunque el umbral de 1% está calibrado conservadoramente para cubrirlos como mínimo.</li>
             <li><strong>Sin suite de tests automatizados.</strong> El proyecto incluye scripts de validación (<code>verify_bronze_coverage.py</code>, <code>benchmark_mindicador.py</code>) pero no tiene tests unitarios o de integración formales. Las validaciones empíricas se ejecutaron manualmente antes de cada decisión (timezone del FX, distribución de gaps, OOM en silver-binance), pero no quedaron codificadas como CI. Aceptable para un proyecto de portfolio en fase A; sería primera prioridad si pasara a uso recurrente.</li>
         </ul>
 
         <h2>Autor</h2>
 
-        <p><strong>Dan Araya</strong> — <a href="https://www.linkedin.com/in/dan-araya-19672a2bb" target="_blank" rel="noopener noreferrer">LinkedIn</a></p>
+        <p><strong>Dan Araya</strong> · <a href="https://www.linkedin.com/in/dan-araya-19672a2bb" target="_blank" rel="noopener noreferrer">LinkedIn</a></p>
 
         <h2>Licencia</h2>
 
-        <p>MIT — ver <a href="LICENSE" target="_blank">LICENSE</a>.</p>
+        <p>MIT · ver <a href="LICENSE" target="_blank">LICENSE</a>.</p>
 
         <p>Ningún archivo de este repositorio contiene datos de mercado; los datos viven en S3 y se descargan ejecutando el pipeline.</p>
 
