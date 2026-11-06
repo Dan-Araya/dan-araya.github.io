@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg?v=dan">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dan Araya · Portfolio</title>
+    <link rel="alternate" hreflang="es" href="../index.html">
+    <link rel="alternate" hreflang="en" href="index.html">
+    <script src="../language.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css?v=language">
+</head>
+<body class="portfolio-page">
+    <a class="skip-link" href="#hero">Skip to content</a>
+    <div class="workspace-header">
+        <a class="workspace-brand" href="#hero">◈ <span>DAN ARAYA</span></a>
+        <span class="workspace-path">~/portfolio/<span id="currentNote">home.md</span></span>
+        <a class="workspace-github" href="https://github.com/Dan-Araya" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+        <a class="workspace-language" href="../index.html?lang=es" hreflang="es" lang="es">Español</a>
+    </div>
+    <div class="workspace-status"><span><i aria-hidden="true"></i> Available for work</span><span id="sectionStatus">01 / 07</span><span>Coquimbo, Chile</span></div>
+    <!-- Scroll track creates vertical scroll distance for GSAP -->
+    <div class="scroll-track" aria-hidden="true"></div>
+
+    <!-- Fixed viewport with translateable canvas -->
+    <div class="viewport-container">
+        <div class="canvas" id="canvas">
+
+            <!-- Hero -->
+            <header class="section section--hero" id="hero">
+                <div class="section-inner">
+                    <div class="note-properties animate-in"><span>focus <b>cloud · automation · data · machine learning</b></span></div>
+                    <p class="hero__prompt animate-in">dan@portfolio <span>~</span> $ whoami</p>
+                    <h1 class="hero__name animate-in">Dan Araya<span class="terminal-cursor" aria-hidden="true">_</span></h1>
+                    <h2 class="hero__tagline animate-in">Software Engineer</h2>
+                    <p class="hero__subtitle animate-in">Python · JavaScript · SQL · React · AWS<br>C/C++ · WebAssembly</p>
+                    <p class="hero__location animate-in">Coquimbo, Chile</p>
+                    <div class="hero__scroll-hint animate-in">
+                        <span>Explore the workspace</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="5" y1="12" x2="19" y2="12"/>
+                            <polyline points="12 5 19 12 12 19"/>
+                        </svg>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Projects -->
+            <section class="section section--projects" id="projects">
+                <div class="section-inner">
+                    <h2 class="projects__heading animate-in">Projects</h2>
+                    <div class="projects__grid">
+                    <article class="project-card project-card--featured animate-in">
+                        <a class="project-card__preview" href="terral.html" aria-label="Read the Terral case study">
+                            <img class="project-card__thumbnail" src="../assets/terral-dashboard.jpg" alt="Terral dashboard showing the main onset estimate and wind speed over time" loading="lazy" width="1265" height="1096">
+                        </a>
+                        <div class="project-card__body">
+                            <h3 class="project-card__title"><a href="terral.html">Terral · Elqui Valley Observatory</a></h3>
+                            <p class="project-card__description">An experimental weather observatory for Chile’s Elqui Valley. It uses CEAZA records and logistic regression models to estimate when the terral wind might start. It combines data collection, validation, and storage with a web dashboard.</p>
+                            <div class="project-card__tags">
+                                <span class="tag">Python</span>
+                                <span class="tag">SQLite</span>
+                                <span class="tag">Logistic Regression</span>
+                                <span class="tag">JavaScript</span>
+                            </div>
+                            <div class="project-card__links">
+                                <a href="terral.html" class="project-card__link">Read the full case study →</a>
+                                <a href="https://www.terral.live/" class="project-card__link" target="_blank" rel="noopener noreferrer">View the observatory ↗</a>
+                                <a href="https://github.com/Dan-Araya/terral" class="project-card__link" target="_blank" rel="noopener noreferrer">Source code on GitHub ↗</a>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="project-card project-card--featured animate-in">
+                        <a class="project-card__preview" href="proyecto.html" aria-label="Read the BTC data pipeline case study">
+                            <img class="project-card__thumbnail project-card__thumbnail--diagram" src="../assets/btc-pipeline-en.svg" alt="Buda.com, Binance, and exchange rate data are ingested with Lambda and Step Functions, stored in S3 and Parquet, and queried with SQL in Athena" loading="lazy" width="480" height="640">
+                        </a>
+                        <div class="project-card__body">
+                            <h3 class="project-card__title">BTC Arbitrage Data Pipeline</h3>
+                            <p class="project-card__description">A serverless AWS pipeline that reconstructs nine years of arbitrage data between Buda.com and Binance. It processes <strong>10.4 million candlesticks</strong> and makes them available for SQL analysis in Athena.</p>
+                            <div class="project-card__tags">
+                                <span class="tag">Python</span>
+                                <span class="tag">AWS Lambda</span>
+                                <span class="tag">Step Functions</span>
+                                <span class="tag">Athena</span>
+                                <span class="tag">Terraform</span>
+                                <span class="tag">Parquet</span>
+                            </div>
+                            <a href="proyecto.html" class="project-card__link">Read the full case study →</a>
+                        </div>
+                    </article>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Experience -->
+            <section class="section section--experience" id="experience">
+                <div class="section-inner">
+                    <h2 class="experience__heading animate-in">Experience</h2>
+                    <div class="experience__list">
+                        <article class="experience-entry animate-in">
+                            <div class="experience-entry__info">
+                                <h3 class="experience-entry__title">Software Developer · AI Automation</h3>
+                                <p class="experience-entry__company">Mindrift (Toloka) · Freelance · Remote</p>
+                                <p class="experience-entry__detail">Built asynchronous Python workflows with asyncio and aiohttp to extract and structure <strong>over 16,000 records</strong> from public sources in a Bronze → Silver → Gold architecture.</p>
+                                <p class="experience-entry__detail">Integrated REST APIs and SPARQL. Verified LLM-generated content against primary sources.</p>
+                            </div>
+                            <span class="experience-entry__date">Mar 2026–Present</span>
+                        </article>
+                        <article class="experience-entry animate-in">
+                            <div class="experience-entry__info">
+                                <h3 class="experience-entry__title">Co-founder &amp; Full-Stack Developer</h3>
+                                <p class="experience-entry__company">Aspha · Corfo Semilla Inicia grant project</p>
+                                <p class="experience-entry__detail">Led technical development of a distributed cloud gaming platform funded by Corfo (<strong>CLP 20 million</strong>). Designed the system architecture and worked on the React frontend, AWS infrastructure, and Docker containers.</p>
+                            </div>
+                            <span class="experience-entry__date">Nov 2024–Nov 2025</span>
+                        </article>
+                        <article class="experience-entry animate-in">
+                            <div class="experience-entry__info">
+                                <h3 class="experience-entry__title">Digital Services Advisor</h3>
+                                <p class="experience-entry__company">IPS ChileAtiende</p>
+                                <p class="experience-entry__detail">Helped users access and navigate government digital services.</p>
+                            </div>
+                            <span class="experience-entry__date">Apr 2024–Mar 2026</span>
+                        </article>
+                        <article class="experience-entry animate-in">
+                            <div class="experience-entry__info">
+                                <h3 class="experience-entry__title">Operations Administrator · Automation and Data</h3>
+                                <p class="experience-entry__company">Starco | Demarco · La Serena</p>
+                                <p class="experience-entry__detail">Used Python and Selenium to automate photo downloads and PDF processing for operational reports.</p>
+                                <p class="experience-entry__detail">Analyzed waste collection data to identify billable excess volume, increasing the amount identified from about <strong>250,000 to more than 1 million liters per month</strong>.</p>
+                            </div>
+                            <span class="experience-entry__date">Apr 2022–Mar 2024</span>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <!-- About Me -->
+            <section class="section section--about" id="about">
+                <div class="section-inner">
+                    <h2 class="about__heading animate-in">About Me</h2>
+                    <div class="about__content">
+                        <div class="about__bio">
+                            <p class="animate-in">In 2023, my job involved pulling work records, photos, and location data into daily reports. When I described it to a friend studying computer science, he asked, “Have you thought about automating it with Python?” The name sounded mysterious, so I looked it up. After a couple of videos and my first “Hello, world” programs, I realized it was exactly what I needed. Soon I had scripts that helped us account for more than a million liters of excess waste per month, up from about 250,000.</p>
+                            <p class="animate-in">Next came scripts for creating directories, searching for text in PDFs (<a href="https://github.com/Dan-Araya/pdf.extractor" target="_blank" rel="noopener">pdf.extractor</a>), and downloading data with Selenium. Two friends and I applied for a Semilla Inicia grant to provide remote access to computing resources, and we secured funding. I learned how much work it takes to build something people can use. We completed the program successfully and wrapped up the project there.</p>
+                            <p class="animate-in">Today I work as a freelance developer in AI-assisted automation. I also build Terral, an experimental weather observatory that uses machine learning to estimate when this wind might start in the Elqui Valley. Terral and the BTC arbitrage pipeline are my two main projects. You can find smaller projects on Linux, WebAssembly, and agent integration on my <a href="https://github.com/Dan-Araya" target="_blank" rel="noopener noreferrer">GitHub</a>.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Skills -->
+            <section class="section section--skills" id="skills">
+                <div class="section-inner">
+                    <h2 class="skills__heading animate-in">Tech Stack</h2>
+                    <div class="skills__categories">
+                        <div class="animate-in">
+                            <h3 class="skills__category-name">Languages</h3>
+                            <div class="skills__tags">
+                                <span class="skill-tag">Python</span>
+                                <span class="skill-tag">Rust</span>
+                                <span class="skill-tag">C/C++</span>
+                                <span class="skill-tag">SQL</span>
+                                <span class="skill-tag">JavaScript</span>
+                                <span class="skill-tag">Bash</span>
+                                <span class="skill-tag">HCL (Terraform)</span>
+                            </div>
+                        </div>
+                        <div class="animate-in">
+                            <h3 class="skills__category-name">Data Engineering & Cloud</h3>
+                            <div class="skills__tags">
+                                <span class="skill-tag">AWS Lambda</span>
+                                <span class="skill-tag">Step Functions</span>
+                                <span class="skill-tag">S3</span>
+                                <span class="skill-tag">Glue Data Catalog</span>
+                                <span class="skill-tag">Athena</span>
+                                <span class="skill-tag">Medallion Architecture</span>
+                                <span class="skill-tag">ELT Pipelines</span>
+                                <span class="skill-tag">Partition projection</span>
+                                <span class="skill-tag">Parquet</span>
+                                <span class="skill-tag">Hive Partitioning</span>
+                                <span class="skill-tag">pandas</span>
+                                <span class="skill-tag">pyarrow</span>
+                            </div>
+                        </div>
+                        <div class="animate-in">
+                            <h3 class="skills__category-name">Automation & AI</h3>
+                            <div class="skills__tags">
+                                <span class="skill-tag">asyncio</span>
+                                <span class="skill-tag">aiohttp</span>
+                                <span class="skill-tag">BeautifulSoup</span>
+                                <span class="skill-tag">Selenium</span>
+                                <span class="skill-tag">REST APIs</span>
+                                <span class="skill-tag">SPARQL</span>
+                                <span class="skill-tag">OpenRouter</span>
+                                <span class="skill-tag">LLM Validation</span>
+                            </div>
+                        </div>
+                        <div class="animate-in">
+                            <h3 class="skills__category-name">Frontend & Web</h3>
+                            <div class="skills__tags">
+                                <span class="skill-tag">HTML</span>
+                                <span class="skill-tag">CSS</span>
+                                <span class="skill-tag">JavaScript</span>
+                                <span class="skill-tag">React</span>
+                                <span class="skill-tag">WebAssembly</span>
+                                <span class="skill-tag">GSAP</span>
+                            </div>
+                        </div>
+                        <div class="animate-in">
+                            <h3 class="skills__category-name">Tooling</h3>
+                            <div class="skills__tags">
+                                <span class="skill-tag">Terraform</span>
+                                <span class="skill-tag">Docker</span>
+                                <span class="skill-tag">Git</span>
+                                <span class="skill-tag">GitHub</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Education -->
+            <section class="section section--blog" id="educacion">
+                <div class="section-inner">
+                    <h2 class="blog__heading animate-in">Education and Certifications</h2>
+                    <div class="education__grid">
+                        <article class="blog-entry animate-in">
+                            <div class="blog-entry__info">
+                                <h3 class="blog-entry__title">Computer Engineering</h3>
+                                <p class="blog-entry__excerpt">Instituto Profesional IACC</p>
+                            </div>
+                            <span class="blog-entry__date">2024–2028</span>
+                        </article>
+                        <article class="blog-entry animate-in">
+                            <div class="blog-entry__info">
+                                <h3 class="blog-entry__title">Intro to Machine Learning</h3>
+                                <p class="blog-entry__excerpt">Kaggle</p>
+                            </div>
+                            <span class="blog-entry__date">Issued Nov 2026</span>
+                            <a class="education__credential" href="https://www.kaggle.com/learn/certification/danaraya/intro-to-machine-learning" target="_blank" rel="noopener noreferrer">View credential ↗</a>
+                        </article>
+                        <article class="blog-entry animate-in">
+                            <div class="blog-entry__info">
+                                <h3 class="blog-entry__title">Introduction to WebAssembly (LFD133)</h3>
+                                <p class="blog-entry__excerpt">The Linux Foundation</p>
+                            </div>
+                            <span class="blog-entry__date">Jul 2026</span>
+                            <a class="education__credential" href="https://ti-user-certificates.s3.amazonaws.com/e0df7fbf-a057-42af-8a1f-590912be5460/229825ea-5fd2-40f0-bde0-048f9193a4be-dan-araya-2b11a802-ff8c-47dd-8b1b-c18a30dce0b1-certificate.pdf" target="_blank" rel="noopener noreferrer">View credential ↗</a>
+                        </article>
+                        <article class="blog-entry animate-in">
+                            <div class="blog-entry__info">
+                                <h3 class="blog-entry__title">Google Cybersecurity Specialization</h3>
+                                <p class="blog-entry__excerpt">Google</p>
+                            </div>
+                            <span class="blog-entry__date">Oct 2025</span>
+                            <a class="education__credential" href="https://www.coursera.org/account/accomplishments/specialization/1ZBACF1JY1D1" target="_blank" rel="noopener noreferrer">View credential ↗</a>
+                        </article>
+                        <article class="blog-entry animate-in">
+                            <div class="blog-entry__info">
+                                <h3 class="blog-entry__title">Introduction to Cybersecurity</h3>
+                                <p class="blog-entry__excerpt">Cisco</p>
+                            </div>
+                            <span class="blog-entry__date">May 2024</span>
+                            <a class="education__credential" href="https://www.credly.com/badges/f0f9b1ff-5d72-484d-918b-3c98faab8e9e/linked_in_profile" target="_blank" rel="noopener noreferrer">View credential ↗</a>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact -->
+            <footer class="section section--contact" id="contact">
+                <div class="section-inner">
+                    <h2 class="contact__heading animate-in">Contact</h2>
+                    <p class="contact__closing animate-in">Open to opportunities in software engineering, automation, and data. Available for on-site work in the Coquimbo Region, as well as hybrid and remote roles.</p>
+                    <div class="contact__layout">
+                        <form class="contact__form animate-in" id="contactForm" action="https://formsubmit.co/dan.araya.wk@gmail.com" method="POST" aria-label="Contact form">
+                            <input type="hidden" name="_subject" value="New message from the portfolio">
+                            <input type="text" name="_honey" class="contact__honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
+                            <div class="contact__fields">
+                                <div class="contact__field">
+                                    <label for="contactName">Name</label>
+                                    <input id="contactName" name="name" type="text" autocomplete="name" maxlength="120" required>
+                                </div>
+                                <div class="contact__field">
+                                    <label for="contactEmail">Email</label>
+                                    <input id="contactEmail" name="email" type="email" autocomplete="email" maxlength="254" required>
+                                </div>
+                            </div>
+                            <div class="contact__field">
+                                <label for="contactMessage">Message</label>
+                                <textarea id="contactMessage" name="message" rows="5" maxlength="5000" required></textarea>
+                            </div>
+                            <button class="contact__submit" type="submit">Send message ↗</button>
+                        </form>
+                        <div class="contact__links animate-in">
+                            <a href="mailto:dan.araya.wk@gmail.com" class="contact__link">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="2" y="4" width="20" height="16" rx="2"/>
+                                    <polyline points="22 4 12 13 2 4"/>
+                                </svg>
+                                <span class="contact__email-text">dan.araya.wk@gmail.com</span>
+                            </a>
+                            <a href="https://github.com/Dan-Araya" class="contact__link" target="_blank" rel="noopener noreferrer">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+                                </svg>
+                                GitHub
+                            </a>
+                            <a href="https://www.linkedin.com/in/dan-araya-19672a2bb" class="contact__link" target="_blank" rel="noopener noreferrer">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                                </svg>
+                                LinkedIn
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="nav" aria-label="Portfolio sections">
+        <span class="nav__heading">EXPLORER <span>07</span></span>
+        <span class="nav__folder">⌄ portfolio /</span>
+        <button class="nav__item is-active" data-index="0" data-note="home.md">Home</button>
+        <button class="nav__item" data-index="1" data-note="projects.md">Projects</button>
+        <button class="nav__item" data-index="2" data-note="experience.md">Experience</button>
+        <button class="nav__item" data-index="3" data-note="about.md">About Me</button>
+        <button class="nav__item" data-index="4" data-note="stack.md">Stack</button>
+        <button class="nav__item" data-index="5" data-note="education.md">Education</button>
+        <button class="nav__item" data-index="6" data-note="contact.md">Contact</button>
+    </nav>
+
+    <!-- Direction arrow -->
+    <div class="direction-arrow" id="directionArrow" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"/>
+            <polyline points="12 5 19 12 12 19"/>
+        </svg>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="../main.js?v=language"></script>
+</body>
+</html>

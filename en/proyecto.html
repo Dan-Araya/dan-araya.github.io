@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg?v=dan">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Pipeline for Historical BTC Arbitrage Analysis · Dan Araya</title>
+    <link rel="alternate" hreflang="es" href="../proyecto.html">
+    <link rel="alternate" hreflang="en" href="proyecto.html">
+    <script src="../language.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css?v=language">
+    <link rel="stylesheet" href="../btc-case.css">
+</head>
+<body class="case-page">
+    <div class="workspace-header">
+        <a class="workspace-brand" href="index.html#projects">◈ <span>DAN ARAYA</span></a>
+        <span class="workspace-path">~/portfolio/projects/<span>btc-pipeline.md</span></span>
+        <a class="workspace-github" href="index.html#projects">Back ↗</a>
+        <a class="workspace-language" href="../proyecto.html?lang=es" hreflang="es" lang="es">Español</a>
+    </div>
+
+    <main class="prose-page">
+
+        <a href="index.html#projects" class="prose-page__back">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="15 18 9 12 15 6"/>
+            </svg>
+            Back to the portfolio
+        </a>
+
+        <h1>Data Pipeline for Historical BTC Arbitrage Analysis</h1>
+
+        <p>This data engineering project reconstructs historical Bitcoin price spreads between Binance (BTC-USDT) and Buda.com (BTC-CLP), adjusting for the USD/CLP exchange rate.</p>
+
+        <blockquote>
+            The AWS pipeline combines one-minute Bitcoin market data with daily USD/CLP exchange rates from Chile’s central bank. It normalizes the data into a unified Silver layer in Parquet and exposes it through Athena, where partition projection helps control query costs. The demo query identifies sustained Buda premiums of at least 1% across nine years of data.
+        </blockquote>
+
+        <p style="margin-bottom: 32px;">
+            <a href="https://github.com/Dan-Araya/Pipeline-de-datos-para-analisis-de-arbitraje-de-BTC" target="_blank" rel="noopener noreferrer" style="font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent); padding-bottom: 2px;">
+                View the GitHub repository →
+            </a>
+        </p>
+
+        <h2>Results</h2>
+
+        <p>The analysis identified 34 hours of significant arbitrage opportunities across nearly nine years of data, from August 2017 through April 2026. An episode qualified if it met both criteria.</p>
+
+        <ul>
+            <li><strong>Persistence.</strong> The price difference lasted more than five consecutive minutes, reducing the influence of brief anomalies or temporary drops in liquidity.</li>
+            <li><strong>Profitability.</strong> Buda traded more than 1% above Binance, the minimum threshold used to account for operating costs, exchange fees, and the daily exchange rate.</li>
+        </ul>
+
+        <div class="results-table" tabindex="0" role="region" aria-labelledby="episodes-caption">
+            <table>
+                <caption id="episodes-caption">Top 20 sustained Buda premiums over Binance by average spread</caption>
+                <thead>
+                    <tr>
+                        <th scope="col">Rank</th>
+                        <th scope="col">Start (Santiago)</th>
+                        <th scope="col">End (Santiago)</th>
+                        <th scope="col">Duration</th>
+                        <th scope="col">Avg. spread</th>
+                        <th scope="col">Max. spread</th>
+                        <th scope="col">Area (% × min)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><th scope="row">1</th><td>2017-12-07 23:27</td><td>2017-12-07 23:46</td><td>20 min</td><td>24.77%</td><td>27.73%</td><td>495.5</td></tr>
+                    <tr><th scope="row">2</th><td>2017-12-07 19:50</td><td>2017-12-07 20:19</td><td>30 min</td><td>23.70%</td><td>25.81%</td><td>710.9</td></tr>
+                    <tr><th scope="row">3</th><td>2017-12-07 19:19</td><td>2017-12-07 19:48</td><td>30 min</td><td>23.62%</td><td>29.45%</td><td>708.7</td></tr>
+                    <tr><th scope="row">4</th><td>2017-12-07 21:21</td><td>2017-12-07 21:48</td><td>28 min</td><td>21.81%</td><td>25.17%</td><td>610.6</td></tr>
+                    <tr><th scope="row">5</th><td>2017-12-07 15:50</td><td>2017-12-07 16:54</td><td>1h 05m</td><td>12.57%</td><td>19.07%</td><td>817.3</td></tr>
+                    <tr><th scope="row">6</th><td>2021-02-23 11:08</td><td>2021-02-23 11:45</td><td>38 min</td><td>12.19%</td><td>15.52%</td><td>463.3</td></tr>
+                    <tr><th scope="row">7</th><td>2021-01-04 09:26</td><td>2021-01-04 10:23</td><td>58 min</td><td>11.92%</td><td>13.91%</td><td>691.1</td></tr>
+                    <tr><th scope="row">8</th><td>2021-02-23 08:26</td><td>2021-02-23 11:06</td><td>2h 41m</td><td>10.56%</td><td>14.45%</td><td>1,700.6</td></tr>
+                    <tr><th scope="row">9</th><td>2021-02-23 13:43</td><td>2021-02-23 15:18</td><td>1h 36m</td><td>9.97%</td><td>12.35%</td><td>957.1</td></tr>
+                    <tr><th scope="row">10</th><td>2021-04-18 10:28</td><td>2021-04-18 11:30</td><td>1h 03m</td><td>9.28%</td><td>10.37%</td><td>584.5</td></tr>
+                    <tr><th scope="row">11</th><td>2021-12-04 11:36</td><td>2021-12-04 13:25</td><td>1h 50m</td><td>8.49%</td><td>13.84%</td><td>933.8</td></tr>
+                    <tr><th scope="row">12</th><td>2021-04-17 23:17</td><td>2021-04-18 00:56</td><td>1h 40m</td><td>8.14%</td><td>14.62%</td><td>814.4</td></tr>
+                    <tr><th scope="row">13</th><td>2021-04-18 12:50</td><td>2021-04-18 14:32</td><td>1h 43m</td><td>7.66%</td><td>9.05%</td><td>788.7</td></tr>
+                    <tr><th scope="row">14</th><td>2021-05-12 21:47</td><td>2021-05-13 00:38</td><td>2h 52m</td><td>7.26%</td><td>10.73%</td><td>1,249.5</td></tr>
+                    <tr><th scope="row">15</th><td>2021-12-04 08:43</td><td>2021-12-04 11:31</td><td>2h 49m</td><td>6.93%</td><td>15.38%</td><td>1,170.7</td></tr>
+                    <tr><th scope="row">16</th><td>2021-02-22 11:29</td><td>2021-02-22 16:31</td><td>5h 03m</td><td>6.87%</td><td>14.86%</td><td>2,080.4</td></tr>
+                    <tr><th scope="row">17</th><td>2021-04-19 10:34</td><td>2021-04-19 12:35</td><td>2h 02m</td><td>6.63%</td><td>9.56%</td><td>809.0</td></tr>
+                    <tr><th scope="row">18</th><td>2021-01-11 11:47</td><td>2021-01-11 13:56</td><td>2h 10m</td><td>6.19%</td><td>10.01%</td><td>804.1</td></tr>
+                    <tr><th scope="row">19</th><td>2021-01-11 14:40</td><td>2021-01-11 16:14</td><td>1h 35m</td><td>5.25%</td><td>9.08%</td><td>499.0</td></tr>
+                    <tr><th scope="row">20</th><td>2021-01-07 10:16</td><td>2021-01-07 12:51</td><td>2h 36m</td><td>4.27%</td><td>5.45%</td><td>666.4</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <p>The results cover August 2017 through April 2026 at one-minute granularity and exclude interpolated Buda candlesticks.</p>
+
+        <p>The largest spreads averaged up to <strong>24%</strong>, with peaks near <strong>30%</strong>. The top five episodes occurred on December 7, 2017, when BTC crossed USD 15,000 for the first time. The longest episode lasted 5 hours and 3 minutes in February 2021 (rank 16).</p>
+
+        <h2>What the Pipeline Measures</h2>
+
+        <p>Chilean exchanges such as Buda.com may trade at sustained premiums to the international BTC market because of low liquidity, currency conversion friction, and operational barriers to arbitrage. This project builds the historical dataset needed to measure those spreads minute by minute from 2017 onward.</p>
+
+        <p>The pipeline ingests three sources with different schemas, normalizes them in a shared Silver layer, and produces aligned time series for analysis. The portfolio project demonstrates batch pipeline design on AWS, with an emphasis on idempotency, observability, and explicit engineering trade-offs.</p>
+
+        <h2>Architecture</h2>
+
+        <div class="mermaid-container">
+            <pre class="mermaid">
+flowchart TB
+    subgraph Sources["External sources"]
+        B[Binance&lt;br/&gt;data-api.binance.vision]
+        BD[Buda.com&lt;br/&gt;www.buda.com/api/v2]
+        M[MIndicador.cl&lt;br/&gt;USD/CLP]
+    end
+    subgraph Ingestion["AWS ingestion layer"]
+        SF1[Step Functions&lt;br/&gt;binance-batch-ingestion]
+        SF2[Step Functions&lt;br/&gt;buda-ingestion]
+        SF3[Step Functions&lt;br/&gt;mindicador-ingestion]
+        L1[Lambda: fetch-binance]
+        L2[Lambda: fetch-buda]
+        L3[Lambda: fetch-mindicador]
+    end
+    subgraph BronzeBox["Bronze layer in S3"]
+        BR[Bronze&lt;br/&gt;Raw JSON + metadata&lt;br/&gt;year=YYYY/month=MM/]
+    end
+    STX["Silver Lambda functions&lt;br/&gt;silver-buda: rebuild OHLCV from trades&lt;br/&gt;silver-binance: cast + FX join (USDT to CLP)&lt;br/&gt;silver-fx: forward-fill holidays&lt;br/&gt;idempotent full refresh"]
+    subgraph SilverBox["Silver layer in S3"]
+        SI[Silver&lt;br/&gt;Unified Parquet&lt;br/&gt;11-column partitioned schema]
+    end
+    GO[Gold&lt;br/&gt;Materialized tables&lt;br/&gt;outside V1 scope]
+    subgraph Catalog["Catalog and analytics"]
+        GC[Glue Data Catalog&lt;br/&gt;partition projection]
+        AT[Athena&lt;br/&gt;workgroup with a scan limit]
+        NB[Notebooks / Dashboard]
+    end
+
+    Sources ~~~ Ingestion
+    B --&gt;|REST /klines 1m| L1
+    BD --&gt;|Raw REST trades.json&lt;br/&gt;cursor pagination| L2
+    M --&gt;|REST /api/dolar/| L3
+    SF1 -.orchestrates.-&gt; L1
+    SF2 -.orchestrates.-&gt; L2
+    SF3 -.orchestrates.-&gt; L3
+    L1 --&gt;|put_object| BR
+    L2 --&gt;|put_object| BR
+    L3 --&gt;|put_object| BR
+    BR --&gt; STX
+    STX --&gt;|put_object| SI
+    SI -.future materialization.-&gt; GO
+    SI --&gt;|registers schema| GC
+    SI --&gt;|reads Parquet| AT
+    GC -.looks up schema.-&gt; AT
+    AT --&gt; NB
+
+    style L1  fill:#3a7d44,color:#ffffff,stroke:#2d6136
+    style L2  fill:#3a7d44,color:#ffffff,stroke:#2d6136
+    style L3  fill:#3a7d44,color:#ffffff,stroke:#2d6136
+    style SF1 fill:#3a7d44,color:#ffffff,stroke:#2d6136
+    style SF2 fill:#3a7d44,color:#ffffff,stroke:#2d6136
+    style SF3 fill:#3a7d44,color:#ffffff,stroke:#2d6136
+    style BR  fill:#3a7d44,color:#ffffff,stroke:#2d6136
+    style STX fill:#3a7d44,color:#ffffff,stroke:#2d6136
+    style SI  fill:#3a7d44,color:#ffffff,stroke:#2d6136
+    style GC  fill:#3a7d44,color:#ffffff,stroke:#2d6136
+    style AT  fill:#3a7d44,color:#ffffff,stroke:#2d6136
+    style GO  fill:#7a6020,color:#ffffff,stroke:#5a4510
+    style NB  fill:#7a6020,color:#ffffff,stroke:#5a4510
+            </pre>
+        </div>
+
+        <p><strong>Legend</strong> · <span class="badge badge--green">green</span> = implemented, <span class="badge badge--yellow">yellow</span> = outside project scope.</p>
+
+        <h2>Pipeline Metrics</h2>
+
+        <h3>Bronze Layer</h3>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Metric</th>
+                    <th>Binance (BTCUSDT)</th>
+                    <th>Buda (BTC-CLP)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Source granularity</td>
+                    <td>1-minute klines</td>
+                    <td>Raw trades</td>
+                </tr>
+                <tr>
+                    <td>Date range</td>
+                    <td>2017-08 to 2026-04</td>
+                    <td>2015-01 to 2026-04</td>
+                </tr>
+                <tr>
+                    <td>Days covered</td>
+                    <td>~3,180</td>
+                    <td>4,138</td>
+                </tr>
+                <tr>
+                    <td>Records ingested</td>
+                    <td>~4.5M klines</td>
+                    <td>~2.67M trades</td>
+                </tr>
+                <tr>
+                    <td>Files in S3</td>
+                    <td>112</td>
+                    <td>246</td>
+                </tr>
+                <tr>
+                    <td>Partitioning</td>
+                    <td>Hive (<code>year=YYYY/month=MM/</code>)</td>
+                    <td>Hive</td>
+                </tr>
+                <tr>
+                    <td>End-to-end validation</td>
+                    <td>Gap-free, deduplicated in Silver</td>
+                    <td>Zero gaps or overlaps (validated)</td>
+                </tr>
+                <tr>
+                    <td>Total backfill time</td>
+                    <td>7 min 27 s (concurrency=3)</td>
+                    <td>~10 h (concurrency=1)</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <p>The FX source, Mindicador.cl, fits in a single 107 KB JSON file with 2,825 daily records from January 2015 through May 2026. One Lambda invocation ingests the file.</p>
+
+        <h3>Silver Layer</h3>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Metric</th>
+                    <th>silver-buda</th>
+                    <th>silver-binance</th>
+                    <th>silver-fx</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Candlesticks / records</td>
+                    <td>5.83M candlesticks</td>
+                    <td>4.58M candlesticks</td>
+                    <td>4,143 dates</td>
+                </tr>
+                <tr>
+                    <td>% interpolated / forward-filled</td>
+                    <td>80.9% interpolated</td>
+                    <td>0.19% interpolated</td>
+                    <td>31.84% forward-filled</td>
+                </tr>
+                <tr>
+                    <td>Partitions generated</td>
+                    <td>134 (year/month)</td>
+                    <td>105 (year/month)</td>
+                    <td>1 (single file)</td>
+                </tr>
+                <tr>
+                    <td>Runtime</td>
+                    <td>47.6 s</td>
+                    <td>96.6 s</td>
+                    <td>6.04 s</td>
+                </tr>
+                <tr>
+                    <td>Peak memory</td>
+                    <td>~500 MB / 3008 MB</td>
+                    <td>2467 MB / 3008 MB</td>
+                    <td>&lt;100 MB / 512 MB</td>
+                </tr>
+                <tr>
+                    <td>Schema</td>
+                    <td>unified_candles (11 cols)</td>
+                    <td>unified_candles (11 cols)</td>
+                    <td>fx_usdclp (3 cols)</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>Stack</h2>
+
+        <ul>
+            <li><strong>Cloud</strong> · AWS (us-east-2)</li>
+            <li><strong>Compute</strong> · AWS Lambda (Python 3.11)</li>
+            <li><strong>Processing</strong> · pandas and pyarrow (in Lambda)</li>
+            <li><strong>Orchestration</strong> · AWS Step Functions</li>
+            <li><strong>Storage</strong> · Amazon S3 (data lake with Hive partitioning)</li>
+            <li><strong>Catalog and analytics</strong> · AWS Glue Data Catalog (partition projection) + Athena</li>
+            <li><strong>IaC</strong> · Terraform (AWS provider ~&gt; 5.0)</li>
+            <li><strong>Languages</strong> · Python, HCL, SQL</li>
+        </ul>
+
+        <h2>Project Structure</h2>
+
+        <pre><code>crypto-arbitrage-scanner/
+├── infra/
+│   ├── main.tf
+│   ├── variables.tf
+│   └── athena_queries/
+│       └── spread_episodes.sql
+├── lambdas/
+│   ├── common/
+│   │   └── fx.py
+│   ├── fetch_binance/
+│   │   └── handler.py
+│   ├── fetch_buda/
+│   │   └── handler.py
+│   ├── fetch_mindicador/
+│   │   └── handler.py
+│   ├── silver_buda/
+│   │   └── handler.py
+│   ├── silver_binance/
+│   │   └── handler.py
+│   └── silver_fx/
+│       └── handler.py
+├── docs/
+│   ├── adr/
+│   │   ├── adr_007_silver_buda_architecture.md
+│   │   ├── adr_008_silver_binance_architecture.md
+│   │   └── adr_009_silver_fx_architecture.md
+│   ├── api_discovery.md
+│   └── pipeline_design.md
+│   ├── generate_backfill_periods.py
+│   ├── generate_buda_periods.py
+│   ├── sample_buda_monthly_volume.py
+│   ├── buda_monthly_volume_sampled.json
+│   ├── verify_bronze_coverage.py
+│   └── generate_top_by_spread.py
+├── backfill_inputs/
+│   ├── active_v2/
+│   ├── archived_v1/
+│   ├── buda_overrides/
+│   └── README.md
+├── tests/
+│   └── benchmark_mindicador.py
+├── assets/
+│   └── top_episodes_by_spread.png
+├── build_lambdas.sh
+├── .gitignore
+└── README.md</code></pre>
+
+        <h2>Running the Pipeline</h2>
+
+        <h3>Prerequisites</h3>
+
+        <ul>
+            <li>AWS CLI with credentials configured</li>
+            <li>Terraform &gt;= 1.5</li>
+            <li>Python 3.11+</li>
+            <li><code>zip</code>, <code>unzip</code>, and <code>bash</code> on your PATH</li>
+        </ul>
+
+        <h3>Deploy the Infrastructure</h3>
+
+        <pre><code>cd infra/
+terraform init
+terraform apply</code></pre>
+
+        <p>Terraform creates the S3 bucket <code>btc-arbitrage-data-lake-001</code>, the ingestion Lambda functions (<code>fetch-binance</code>, <code>fetch-buda</code>, <code>fetch-mindicador</code>) and transformation functions (<code>silver-buda</code>, <code>silver-binance</code>, <code>silver-fx</code>), the ingestion state machines for each source, a Glue catalog with partition projection, an Athena workgroup with a 200 MB scan limit, an Athena results bucket with a seven-day lifecycle, and the corresponding IAM roles.</p>
+
+        <h3>Package the Lambda Functions</h3>
+
+        <pre><code>./build_lambdas.sh                      # Package all Lambda functions
+./build_lambdas.sh &lt;lambda_name&gt;        # Package a single Lambda function</code></pre>
+
+        <p>The build script uses an explicit allowlist of <code>.py</code> files and creates reproducible archives with <code>zip -X</code>, keeping Terraform’s <code>source_code_hash</code> stable when the code stays the same. Functions in <code>LAMBDAS_NEEDING_COMMON</code> (<code>silver_binance</code> and <code>silver_fx</code>) also bundle the <code>lambdas/common/</code> module.</p>
+
+        <h3>Backfill Historical Data</h3>
+
+        <p><strong>Binance</strong> (concurrency of 3, about 7.5 min for nine years):</p>
+
+        <pre><code>python scripts/generate_backfill_periods.py &gt; backfill_input.json
+
+aws stepfunctions start-execution \
+  --state-machine-arn $(cd infra &amp;&amp; terraform output -raw state_machine_arn) \
+  --input file://backfill_input.json</code></pre>
+
+        <p><strong>Buda</strong> (concurrency of 1, about 10 h for eleven years):</p>
+
+        <pre><code>python scripts/sample_buda_monthly_volume.py &gt; buda_monthly_volume_sampled.json
+python scripts/generate_buda_periods.py &gt; backfill_buda_input.json
+
+aws stepfunctions start-execution \
+  --state-machine-arn $(cd infra &amp;&amp; terraform output -raw buda_state_machine_arn) \
+  --input file://backfill_buda_input.json \
+  --name "buda-backfill-$(date +%Y%m%d-%H%M%S)"</code></pre>
+
+        <p>The Buda backfill runs serially (<code>MaxConcurrency = 1</code>) to stay within the exchange’s rate limit. Run the backfill in yearly batches.</p>
+
+        <h3>Backfill USD/CLP Data (Mindicador.cl)</h3>
+
+        <p>One invocation writes one file in about six seconds.</p>
+
+        <pre><code>aws stepfunctions start-execution \
+  --state-machine-arn $(cd infra &amp;&amp; terraform output -raw mindicador_state_machine_arn) \
+  --input '{}'</code></pre>
+
+        <p>Each run downloads the entire series from 2015 onward and produces the same result given the same data. The resulting Bronze file is about 107 KB.</p>
+
+        <h3>Process the Silver Layer (Bronze → Silver)</h3>
+
+        <p>Invoke all three Silver Lambda functions manually. Each run reprocesses all Bronze data in an idempotent full refresh with no intermediate state.</p>
+
+        <pre><code># Silver Buda rebuilds OHLCV from trades (~48 s, 5.83M candlesticks, 134 partitions)
+aws lambda invoke \
+  --function-name silver-buda \
+  --invocation-type RequestResponse \
+  --cli-read-timeout 300 \
+  /tmp/silver_buda_response.json
+
+# Silver Binance casts values and joins FX (USDT to CLP, ~97 s, 4.58M candlesticks, 105 partitions)
+aws lambda invoke \
+  --function-name silver-binance \
+  --invocation-type RequestResponse \
+  --cli-read-timeout 300 \
+  /tmp/silver_binance_response.json
+
+# Silver FX forward-fills holidays (~6 s, single file)
+aws lambda invoke \
+  --function-name silver-fx \
+  --invocation-type RequestResponse \
+  /tmp/silver_fx_response.json</code></pre>
+
+        <p>Each JSON response includes execution metrics for processed rows, the percentage of interpolated or forward-filled rows, and peak memory usage.</p>
+
+        <h3>Verify the Backfill</h3>
+
+        <pre><code># Count files by source
+aws s3 ls s3://btc-arbitrage-data-lake-001/bronze/backtest/binance/ --recursive | wc -l
+aws s3 ls s3://btc-arbitrage-data-lake-001/bronze/backtest/buda/ --recursive | wc -l
+
+# Check Buda coverage for gaps and overlaps
+python scripts/verify_bronze_coverage.py</code></pre>
+
+        <h3>Analyze the Data in Athena</h3>
+
+        <p>The demo query (<code>infra/athena_queries/spread_episodes.sql</code>) identifies periods when Buda sustained a premium of at least 1% over Binance. See the Results section for the findings.</p>
+
+        <pre><code># Run the query
+QID=$(aws athena start-query-execution \
+  --region us-east-2 \
+  --work-group arbitraje_btc_wg \
+  --query-string "$(cat infra/athena_queries/spread_episodes.sql)" \
+  --query-execution-context Database=arbitraje_btc \
+  --query 'QueryExecutionId' \
+  --output text)
+
+# Wait and retrieve results (scans ~125 MB in ~3 seconds)
+sleep 5
+aws s3 cp s3://btc-arbitrage-athena-results-001/queries/${QID}.csv query_results/resultado_arbitraje.csv</code></pre>
+
+        <p>The <code>arbitraje_btc_wg</code> workgroup caps each query at 200 MB to prevent accidental full-table scans, which would read several GB without filters.</p>
+
+        <h2>Architecture Decisions</h2>
+
+        <p>Five decisions shaped the pipeline.</p>
+
+        <h3>1. Binance Endpoint <code>data-api.binance.vision</code></h3>
+
+        <p>The <code>api.binance.com</code> endpoint returned <code>HTTP 451</code> for AWS IP addresses in U.S. regions, including us-east-2, because of regulatory restrictions on requests from U.S. IP addresses.</p>
+
+        <p>The public <code>data-api.binance.vision</code> subdomain exposed the same market data schema without that geographic restriction. We diagnosed the issue by logging the outbound IP address at handler startup and adopted the practice in both handlers.</p>
+
+        <h3>2. Preserve Raw Data in Bronze and Deduplicate in Silver</h3>
+
+        <p>Both Lambda functions store raw API responses, including expected overlaps caused by pagination. Binance uses an inclusive <code>endTime</code>, while Buda uses an exclusive cursor. Silver handles cleanup in Parquet under a unified schema.</p>
+
+        <p>We accept fewer than 0.003% duplicate records in Bronze so we can reprocess the data without calling the APIs again.</p>
+
+        <h3>3. Adaptive Batching Based on Observed Volume (Buda)</h3>
+
+        <p>Binance uses one file per month. For Buda, the generator (<code>generate_buda_periods.py</code>) samples trade volume on the 15th and splits the month into one, two, or four to five files. It estimates Lambda wall-clock time from the sample and adjusts the batch size to leave room below the 900-second timeout.</p>
+
+        <p>The heuristic misses months with short bursts of activity. During the December 24–31, 2020 BTC rally, the quiet sample on the 15th underestimated the month’s volume. We used targeted overrides with batches shorter than a week for the affected half-months.</p>
+
+        <h3>4. Tune Throttling with Runtime Metrics</h3>
+
+        <p>The Buda handler writes runtime metrics to each Bronze file (<code>wall_clock_seconds</code>, <code>effective_rps</code>, <code>nominal_rps</code>, and <code>throttle_429_events</code>). Those measurements supported <strong>reducing <code>BUDA_THROTTLE_SECONDS</code> in stages</strong>, from 3.0 to 2.0 to 1.0 seconds.</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Throttle</th>
+                    <th>Validated runs</th>
+                    <th>429 events</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>3.0s</td><td>92</td><td>0</td></tr>
+                <tr><td>2.0s</td><td>55</td><td>0</td></tr>
+                <tr><td>1.0s</td><td>100</td><td>0</td></tr>
+            </tbody>
+        </table>
+
+        <p>Across 247 runs, none triggered throttling. The shorter delay would substantially reduce future backfill times for other Buda pairs such as ETH-CLP and LTC-CLP.</p>
+
+        <h3>5. Describe Data in Silver and Apply Filters in Gold</h3>
+
+        <p>The Silver layer <strong>keeps outliers, unusual candlesticks, and atypical volumes</strong>. It records lineage flags (<code>is_interpolated</code> and <code>is_ffilled</code>) and warns about invalid values (close ≤ 0 or volume &lt; 0). Outliers can be the signal in arbitrage analysis, so the pipeline preserves them and leaves filtering decisions to analytical queries.</p>
+
+        <p><strong>Each Silver Lambda reprocesses all Bronze data on every invocation.</strong> The same Bronze data and code produce the same Silver output, with no intermediate state, partition checkpoints, or deltas to reconcile. At the current volume of 10.4 million candlesticks in under two minutes, the cost is low.</p>
+
+        <p>The catalog uses <strong>partition projection</strong> to infer <code>unified_candles</code> partitions from a declarative formula (years 2017–2026 and months 01–12). Terraform defines the entire catalog, which eliminates the need to update Glue partitions with <code>MSCK REPAIR TABLE</code> or <code>ALTER TABLE ADD PARTITION</code> after a Silver refresh. The demo query scans 125 MB across nine years in about three seconds. The workgroup stops queries that scan more than 200 MB.</p>
+
+        <h2>Roadmap</h2>
+
+        <h3>Phase A.1 · Binance Historical Ingestion (Complete)</h3>
+
+        <ul class="checklist">
+            <li>Lambda with pagination, idempotency, and rate-limit handling</li>
+            <li>Step Functions orchestration of 112 monthly invocations with a concurrency of 3</li>
+            <li>About 4.5 million klines in an S3 data lake with Hive partitioning</li>
+        </ul>
+
+        <h3>Phase A.2 · Buda Historical Ingestion (Complete)</h3>
+
+        <ul class="checklist">
+            <li>Reverse pagination using an exclusive cursor</li>
+            <li>Adaptive batch sizing based on observed volumes</li>
+            <li>Runtime metrics in metadata for tuning throttling</li>
+            <li>Backfill from 2015 to 2026 with end-to-end validation of zero gaps or overlaps</li>
+        </ul>
+
+        <h3>Phase A.3 · USD/CLP Exchange Rate (Complete)</h3>
+
+        <ul class="checklist">
+            <li>Handler for MIndicador.cl</li>
+            <li>Forward-fill for weekends and Chilean holidays, covering the full operating range with gaps of up to seven days</li>
+        </ul>
+
+        <h3>Phase A.4 · Silver Layer and Athena Queries (Complete)</h3>
+
+        <ul class="checklist">
+            <li>One-minute OHLCV reconstruction from Buda trades</li>
+            <li>FX join to normalize Binance prices from USDT to CLP</li>
+            <li>Unified <code>unified_candles</code> schema with 11 columns, partitioned by year and month</li>
+            <li>FX forward-filling and lineage flags (<code>is_interpolated</code>, <code>is_ffilled</code>)</li>
+            <li>Glue Data Catalog with partition projection</li>
+            <li>Athena workgroup with a 200 MB scan limit</li>
+            <li>Demo query for sustained Buda premiums over Binance</li>
+        </ul>
+
+        <h3>Phase A.5 · Materialized Gold (Outside V1 Scope)</h3>
+
+        <p>At the current data volume and query frequency, Athena runs analytical queries directly against Silver in about three seconds. A materialized Gold layer remains a future phase for frequent queries or a downstream consumer, such as a dashboard or API, that would justify the maintenance cost.</p>
+
+        <h2>Lessons Learned</h2>
+
+        <ul>
+            <li><strong>Geographic restrictions can be hard to diagnose.</strong> An <code>HTTP 451</code> response from Lambda in us-east-2 prompted us to investigate binance.com. News reports about the block led us to switch to the public market data subdomain. Logging the outbound IP address at startup saved hours of debugging and became standard in both handlers.</li>
+            <li><strong>Parallelizing the work delivered the biggest speedup.</strong> Step Functions ran three Binance batches concurrently and cut the backfill from about a day with a sequential script to 7.5 minutes using the same handler.</li>
+            <li><strong>Measure before tuning.</strong> We adjusted the Buda throttle using per-run metrics such as <code>effective_rps</code> and <code>wall_clock</code>. After 92 runs at 3.0 seconds with zero <code>429</code> responses, we had enough evidence to try 2.0 seconds.</li>
+            <li><strong>A single sample misses concentrated spikes.</strong> Sampling the 15th works for months with steady volume but underestimates activity around events such as the December 24–31, 2020 rally and the May 19, 2021 flash crash. Targeted overrides handled those cases while keeping the general batching rule simple.</li>
+            <li><strong>Raw Bronze data makes cleanup repeatable.</strong> By documenting pagination overlaps and deduplicating in Silver, we can change the cleanup logic and rerun it without hitting the APIs again. The small cost of deduplication buys idempotent reprocessing.</li>
+            <li><strong>Tune the system where it fails.</strong> Twice during the Buda backfill, a failure made it tempting to chain Lambda functions or add a scheduler. In both cases, tuning a parameter solved the issue with the existing architecture. See <a href="https://blog.prototypr.io/galls-law-93c8ef8b651e?gi=cb505cb8f997" target="_blank" rel="noopener noreferrer">Gall's Law</a>.</li>
+        </ul>
+
+        <h2>Limitations</h2>
+
+        <p>The project demonstrates data engineering in a portfolio. Its design choices affect how the results should be interpreted and how the pipeline can be used.</p>
+
+        <ul>
+            <li><strong>Filtering interpolated candlesticks introduces selection bias.</strong> Buda candlesticks with <code>is_interpolated = true</code> represent minutes with no trades (about 81% of the total). Their prices come from the last known trade. The demo query excludes those minutes and reports spreads when Buda actually traded. Those minutes may coincide with higher market activity and wider spreads.</li>
+            <li><strong>Queries run directly against Silver.</strong> Athena returns exploratory results in about three seconds across nine years of data. Frequent or subsecond queries from an interactive dashboard or public API could justify pre-aggregated Gold tables.</li>
+            <li><strong>Reported spreads are theoretical.</strong> The metrics use closing prices (<code>close_clp</code>) and omit order book liquidity and market depth. At a 5% spread, the available trade size matters whether it is 0.1 BTC or 10 BTC. The query also omits per-episode fees (about 0.1% on Binance and 0.4–0.8% on Buda, plus transfer costs). The 1% threshold serves as an estimate of minimum costs.</li>
+            <li><strong>Validation is manual.</strong> The project includes validation scripts (<code>verify_bronze_coverage.py</code> and <code>benchmark_mindicador.py</code>). We manually checked the FX time zone, the distribution of gaps, and the silver-binance out-of-memory issue. Formal unit and integration tests in CI would be the first priority before regular use.</li>
+        </ul>
+
+        <h2>Author</h2>
+
+        <p><strong>Dan Araya</strong> · <a href="https://www.linkedin.com/in/dan-araya-19672a2bb" target="_blank" rel="noopener noreferrer">LinkedIn</a></p>
+
+        <h2>License</h2>
+
+        <p>MIT.</p>
+
+        <p>The pipeline downloads market data into S3. The repository contains the pipeline code.</p>
+
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <script>
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'base',
+            fontFamily: 'JetBrains Mono, monospace',
+            themeVariables: {
+                primaryColor: '#181b21',
+                primaryTextColor: '#dce0e8',
+                primaryBorderColor: '#353b46',
+                lineColor: '#7d8597',
+                secondaryColor: '#181b21',
+                tertiaryColor: '#1f232b'
+            },
+            flowchart: {
+                useMaxWidth: true,
+                htmlLabels: true
+            }
+        });
+    </script>
+
+</body>
+</html>

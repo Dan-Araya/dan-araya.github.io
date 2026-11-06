@@ -5,10 +5,13 @@
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg?v=dan">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dan Araya · Portfolio</title>
+    <link rel="alternate" hreflang="es" href="index.html">
+    <link rel="alternate" hreflang="en" href="en/index.html">
+    <script src="language.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css?v=20261101-contact-6">
+    <link rel="stylesheet" href="styles.css?v=language">
 </head>
 <body class="portfolio-page">
     <a class="skip-link" href="#hero">Ir al contenido</a>
@@ -16,6 +19,7 @@
         <a class="workspace-brand" href="#hero">◈ <span>DAN ARAYA</span></a>
         <span class="workspace-path">~/portfolio/<span id="currentNote">inicio.md</span></span>
         <a class="workspace-github" href="https://github.com/Dan-Araya" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+        <a class="workspace-language" href="en/index.html?lang=en" hreflang="en" lang="en">English</a>
     </div>
     <div class="workspace-status"><span><i aria-hidden="true"></i> Disponible para trabajar</span><span id="sectionStatus">01 / 07</span><span>Coquimbo, Chile</span></div>
     <!-- Scroll track creates vertical scroll distance for GSAP -->
@@ -324,13 +328,13 @@
     <nav class="nav" aria-label="Secciones del portfolio">
         <span class="nav__heading">EXPLORADOR <span>07</span></span>
         <span class="nav__folder">⌄ portfolio /</span>
-        <button class="nav__item is-active" data-index="0">Inicio</button>
-        <button class="nav__item" data-index="1">Proyectos</button>
-        <button class="nav__item" data-index="2">Experiencia</button>
-        <button class="nav__item" data-index="3">Sobre mí</button>
-        <button class="nav__item" data-index="4">Stack</button>
-        <button class="nav__item" data-index="5">Educación</button>
-        <button class="nav__item" data-index="6">Contacto</button>
+        <button class="nav__item is-active" data-index="0" data-note="inicio.md">Inicio</button>
+        <button class="nav__item" data-index="1" data-note="proyectos.md">Proyectos</button>
+        <button class="nav__item" data-index="2" data-note="experiencia.md">Experiencia</button>
+        <button class="nav__item" data-index="3" data-note="sobre-mi.md">Sobre mí</button>
+        <button class="nav__item" data-index="4" data-note="stack.md">Stack</button>
+        <button class="nav__item" data-index="5" data-note="educacion.md">Educación</button>
+        <button class="nav__item" data-index="6" data-note="contacto.md">Contacto</button>
     </nav>
 
     <!-- Direction arrow -->
@@ -343,6 +347,6 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-    <script src="main.js?v=20261101-responsive-2"></script>
+    <script src="main.js?v=language"></script>
 </body>
 </html>

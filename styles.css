@@ -31,6 +31,7 @@ button { font: inherit; }
 .workspace-path { color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .workspace-path span { color: var(--text-secondary); }
 .workspace-github { margin-left: auto; white-space: nowrap; }
+.workspace-language { flex-shrink: 0; }
 .workspace-status { position: fixed; inset: auto 0 0; height: 33px; padding: 0 22px; display: flex; justify-content: space-between; align-items: center; gap: 12px; background: var(--surface); border-top: 1px solid var(--border); z-index: 110; color: var(--muted); font-size: .68rem; }
 .workspace-status > span:first-child { color: var(--success); }
 .workspace-status i { display: inline-block; height: 6px; width: 6px; background: var(--success); margin-right: 8px; border-radius: 50%; }
@@ -182,6 +183,7 @@ strong { font-weight: 600; color: var(--text); }
     .workspace-brand { font-size: .7rem; gap: 7px; }
     .workspace-path { font-size: .65rem; }
     .workspace-github { display: none; }
+    .workspace-language { margin-left: auto; }
     .section-inner { padding: 100px 22px 65px; }
     .note-properties { flex-direction: column; gap: 6px; margin-bottom: 40px; font-size: .7rem; }
     .hero__name { font-size: clamp(2.5rem, 11vw, 4rem); }

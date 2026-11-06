@@ -3,7 +3,6 @@
     if (hasAnimation) gsap.registerPlugin(ScrollTrigger);
     var linearQuery = window.matchMedia('(max-width: 1199px), (max-height: 640px), (prefers-reduced-motion: reduce)');
     var sectionIds = ['hero', 'projects', 'experience', 'about', 'skills', 'educacion', 'contact'];
-    var noteNames = ['inicio', 'proyectos', 'experiencia', 'sobre-mi', 'stack', 'educacion', 'contacto'];
     var observer;
     var activeIndex = 0;
 
@@ -16,7 +15,7 @@
             if (i === index) item.setAttribute('aria-current', 'location');
             else item.removeAttribute('aria-current');
         });
-        document.getElementById('currentNote').textContent = noteNames[index] + '.md';
+        document.getElementById('currentNote').textContent = navItems[index].dataset.note;
         document.getElementById('sectionStatus').textContent = '0' + (index + 1) + ' / 07';
     }
 

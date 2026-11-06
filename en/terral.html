@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terral · Elqui Valley Observatory · Dan Araya</title>
+    <meta name="description" content="An experimental observatory that combines CEAZA weather data, logistic regression models, and a web app to explore the onset of the terral wind.">
+    <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg?v=dan">
+    <link rel="alternate" hreflang="es" href="../terral.html">
+    <link rel="alternate" hreflang="en" href="terral.html">
+    <script src="../language.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css?v=language">
+    <link rel="stylesheet" href="../case-study.css">
+</head>
+<body class="case-page">
+    <a class="skip-link" href="#contenido">Skip to content</a>
+    <div class="workspace-header">
+        <a class="workspace-brand" href="index.html#projects">◈ <span>DAN ARAYA</span></a>
+        <span class="workspace-path">~/portfolio/projects/<span>terral.md</span></span>
+        <a class="workspace-github" href="index.html#projects">Back ↗</a>
+        <a class="workspace-language" href="../terral.html?lang=es" hreflang="es" lang="es">Español</a>
+    </div>
+    <main class="prose-page" id="contenido">
+        <a href="index.html#projects" class="prose-page__back">← Back to the portfolio</a>
+        <h1>Terral · Elqui Valley Observatory</h1>
+        <p>Can observations from weather stations in the valley help us predict when the terral wind will start? We explore that question with an app that brings weather data and machine learning estimates together.</p>
+        <div class="case-links">
+            <a href="https://www.terral.live/" target="_blank" rel="noopener noreferrer">View the observatory ↗</a>
+            <a href="https://github.com/Dan-Araya/terral" target="_blank" rel="noopener noreferrer">Source code on GitHub ↗</a>
+        </div>
+        <figure>
+            <img src="../assets/terral-dashboard.jpg" width="1265" height="1096" alt="Terral dashboard showing the onset estimate, model horizons, and weather observations over time">
+            <figcaption>The observatory dashboard shows the main estimate, a forecast horizon selector, and weather observations.</figcaption>
+        </figure>
+        <h2>The Problem</h2>
+        <p>The terral is a warm, dry wind characteristic of Chile’s Elqui Valley. The project identifies conditions associated with the wind and estimates whether they may develop in the next few hours. It uses weather criteria as a proxy for the phenomenon, so individual episodes remain unverified.</p>
+        <h2>Data and Application</h2>
+        <p>The system collects and validates weather data, stores it in SQLite, and uses logistic regression models to generate estimates for the web dashboard. Python handles the data and models, and JavaScript supports the interface.</p>
+        <ol>
+            <li><strong>Collection.</strong> CEAZA publishes records from the INIA Vicuña and Pisco Elqui weather stations through CEAZAMet.</li>
+            <li><strong>Preparation.</strong> The pipeline validates observations and builds time windows with data from both stations.</li>
+            <li><strong>Estimation.</strong> The models use temperature, humidity, wind, and pressure to estimate when the weather criteria might first be met.</li>
+            <li><strong>Dashboard.</strong> The interface shows estimates by forecast horizon and charts of observations over time.</li>
+        </ol>
+        <h2>Evaluation</h2>
+        <p>We trained six L2-regularized logistic regression models for horizons of 1, 3, 6, 8, 12, and 24 hours. We used data from 2013 through 2021 for training and data from 2022 and 2023 for evaluation.</p>
+        <p>We compare the estimates against a fixed-probability baseline. We also measure which episodes the models predict, how much lead time they provide, and how often they raise false alarms. The <a href="https://www.terral.live/metodologia" target="_blank" rel="noopener noreferrer">observatory’s methodology</a> documents the results and evaluation conditions.</p>
+        <h2>Scope and Next Steps</h2>
+        <p>The observatory is experimental. A six-hour horizon represents a window in which the wind could start. The estimates also depend on which observations are available, how recent they are, and how the system interprets their timestamps.</p>
+        <p>The next steps are to extend evaluation to 2024 through 2026 and study the trade-off between lead time, detection, and false alarms.</p>
+        <h2>Sources</h2>
+        <ul>
+            <li><a href="https://www.ceazamet.cl/" target="_blank" rel="noopener noreferrer">CEAZAMet</a> · Weather observations from CEAZA.</li>
+            <li><a href="https://www.terral.live/metodologia" target="_blank" rel="noopener noreferrer">Terral methodology</a> · Criteria, evaluation, and limitations.</li>
+        </ul>
+        <a href="index.html#projects" class="prose-page__back">← Back to projects</a>
+    </main>
+</body>
+</html>

@@ -5,215 +5,22 @@
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg?v=dan">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pipeline de datos para análisis histórico de arbitraje de BTC · Dan Araya</title>
+    <link rel="alternate" hreflang="es" href="proyecto.html">
+    <link rel="alternate" hreflang="en" href="en/proyecto.html">
+    <script src="language.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css?v=20261101-responsive-2">
-    <style>
-        .prose-page {
-            max-width: 840px;
-            margin: 0 auto;
-            padding: 120px 24px 80px;
-        }
-
-        .prose-page__back {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.8rem;
-            color: var(--text-secondary);
-            text-decoration: none;
-            margin-bottom: 64px;
-            transition: color 200ms ease;
-        }
-
-        .prose-page__back:hover {
-            color: var(--accent);
-        }
-
-        .prose-page h1 {
-            font-size: clamp(2rem, 3.5vw, 3.2rem);
-            margin-bottom: 12px;
-        }
-
-        .prose-page h2 {
-            font-size: 1.5rem;
-            margin-top: 72px;
-            margin-bottom: 16px;
-            padding-bottom: 8px;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .prose-page h3 {
-            font-size: 1.1rem;
-            margin-top: 48px;
-            margin-bottom: 12px;
-        }
-
-        .prose-page p {
-            color: var(--text-secondary);
-            font-size: 1.02rem;
-            line-height: 1.75;
-            margin-bottom: 20px;
-        }
-
-        .prose-page blockquote {
-            border-left: 3px solid var(--accent);
-            margin: 28px 0;
-            padding: 12px 24px;
-            color: var(--text-secondary);
-            font-style: italic;
-            font-size: 0.95rem;
-        }
-
-        .prose-page img {
-            max-width: 100%;
-            height: auto;
-            margin: 32px 0;
-            border: 1px solid var(--border);
-        }
-
-        .prose-page pre {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            padding: 20px 24px;
-            margin: 24px 0;
-            overflow-x: auto;
-            font-size: 0.82rem;
-            line-height: 1.65;
-        }
-
-        .prose-page pre code {
-            font-family: 'JetBrains Mono', monospace;
-            font-weight: 400;
-            font-size: inherit;
-        }
-
-        .prose-page code {
-            font-family: 'JetBrains Mono', monospace;
-            font-weight: 400;
-            font-size: 0.85em;
-            color: var(--accent);
-            background: var(--surface);
-            padding: 1px 5px;
-        }
-
-        .prose-page pre code {
-            color: var(--text);
-            background: none;
-            padding: 0;
-        }
-
-        .prose-page table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 28px 0;
-            font-size: 0.88rem;
-        }
-
-        .prose-page th {
-            font-family: 'JetBrains Mono', monospace;
-            font-weight: 400;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: var(--text-secondary);
-            text-align: left;
-            padding: 12px 14px;
-            border-bottom: 2px solid var(--border);
-        }
-
-        .prose-page td {
-            padding: 10px 14px;
-            border-bottom: 1px solid var(--border);
-            color: var(--text-secondary);
-            vertical-align: top;
-        }
-
-        .prose-page tr:last-child td {
-            border-bottom: none;
-        }
-
-        .prose-page ul, .prose-page ol {
-            margin: 16px 0 24px 24px;
-            color: var(--text-secondary);
-        }
-
-        .prose-page li {
-            margin-bottom: 8px;
-            line-height: 1.65;
-        }
-
-        .prose-page hr {
-            border: none;
-            border-top: 1px solid var(--border);
-            margin: 56px 0;
-        }
-
-        .prose-page .badge {
-            display: inline-block;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.7rem;
-            padding: 3px 10px;
-            border: 1px solid var(--border);
-            margin-right: 6px;
-            margin-bottom: 6px;
-        }
-
-        .prose-page .badge--green {
-            border-color: var(--accent);
-            color: var(--accent);
-        }
-
-        .prose-page .badge--yellow {
-            border-color: var(--warning);
-            color: var(--warning);
-        }
-
-        .prose-page .mermaid-container {
-            margin: 32px 0;
-            padding: 24px;
-            background: var(--surface);
-            border: 1px solid var(--border);
-            overflow-x: auto;
-        }
-
-        .prose-page .checklist {
-            list-style: none;
-            margin-left: 0;
-        }
-
-        .prose-page .checklist li::before {
-            content: '✓';
-            color: var(--accent);
-            margin-right: 10px;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.85rem;
-        }
-
-        @media (max-width: 767px) {
-            .prose-page {
-                padding: 80px 20px 48px;
-            }
-
-            .prose-page h2 {
-                font-size: 1.3rem;
-                margin-top: 48px;
-            }
-
-            .prose-page table {
-                font-size: 0.75rem;
-            }
-
-            .prose-page th, .prose-page td {
-                padding: 8px 10px;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css?v=language">
+    <link rel="stylesheet" href="btc-case.css">
 </head>
 <body class="case-page">
-    <div class="workspace-header"><a class="workspace-brand" href="index.html#projects">◈ <span>DAN ARAYA</span></a><span class="workspace-path">~/portfolio/proyectos/<span>btc-pipeline.md</span></span><a class="workspace-github" href="index.html#projects">Volver ↗</a></div>
+    <div class="workspace-header">
+        <a class="workspace-brand" href="index.html#projects">◈ <span>DAN ARAYA</span></a>
+        <span class="workspace-path">~/portfolio/proyectos/<span>btc-pipeline.md</span></span>
+        <a class="workspace-github" href="index.html#projects">Volver ↗</a>
+        <a class="workspace-language" href="en/proyecto.html?lang=en" hreflang="en" lang="en">English</a>
+    </div>
 
     <main class="prose-page">
 
@@ -228,7 +35,7 @@
 
         <p>Este es un proyecto de Data Engineering cuyo objetivo es reconstruir el histórico de diferenciales de precio de Bitcoin entre Binance (BTC-USDT) y Buda.com (BTC-CLP), normalizado por el tipo de cambio USD/CLP.</p>
 
-        <blockquote>
+        <blockquote lang="en">
             English summary: End-to-end AWS data pipeline that ingests Bitcoin market data from Binance and Buda.com at minute-level granularity, combined with daily USD/CLP FX rates from the Central Bank of Chile. The pipeline normalizes data into a unified Silver layer in Parquet and exposes it via Athena with partition projection for cost-controlled analytical queries. Built with Lambda, Step Functions, S3, Glue, and Terraform. Demo query identifies sustained arbitrage episodes (Buda premium ≥ 1%) across 9 years of data.
         </blockquote>
 

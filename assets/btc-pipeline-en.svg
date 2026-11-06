@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="640" viewBox="0 0 480 640" role="img" aria-labelledby="title desc">
+  <title id="title">BTC Data Pipeline</title>
+  <desc id="desc">Market and exchange rate data, AWS ingestion, S3 storage, and Athena queries.</desc>
+  <rect width="480" height="640" rx="16" fill="#101216"/>
+  <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="m1 1 5 3-5 3" fill="none" stroke="#7ebeff" stroke-width="1.5"/></marker></defs>
+  <g font-family="monospace" text-anchor="middle">
+    <text x="240" y="42" fill="#7d8597" font-size="14" letter-spacing="2">FROM MARKET DATA TO SQL</text>
+    <g fill="#181b21" stroke="#353b46" stroke-width="2">
+      <rect x="40" y="68" width="400" height="100" rx="12"/>
+      <rect x="40" y="216" width="400" height="100" rx="12"/>
+      <rect x="40" y="364" width="400" height="100" rx="12"/>
+      <rect x="40" y="512" width="400" height="100" rx="12"/>
+    </g>
+    <g fill="#b79eff" font-size="15">
+      <text x="240" y="99">01 · SOURCES</text><text x="240" y="247">02 · INGESTION</text>
+      <text x="240" y="395">03 · STORAGE</text><text x="240" y="543">04 · QUERIES</text>
+    </g>
+    <g fill="#dce0e8" font-size="21">
+      <text x="240" y="133">Buda.com · Binance</text><text x="240" y="281">Lambda + Step Functions</text>
+      <text x="240" y="429">S3 · raw data and Parquet</text><text x="240" y="577">Athena · SQL</text>
+    </g>
+    <text x="240" y="155" fill="#9ba3b4" font-size="14">+ USD/CLP exchange rate</text>
+  </g>
+  <g stroke="#7ebeff" stroke-width="2" marker-end="url(#arrow)"><path d="M240 178v26"/><path d="M240 326v26"/><path d="M240 474v26"/></g>
+</svg>
